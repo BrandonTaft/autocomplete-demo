@@ -26,7 +26,6 @@ function Numbers() {
   );
 
   function getArray(x) {
-    console.log([...Array(10).keys()])
     return (
       [...Array(x).keys()]
     )

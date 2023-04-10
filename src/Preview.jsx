@@ -28,7 +28,7 @@ function Preview() {
     return (
         <section className='preview'>
              <div className="preview-container">
-                {isOpen && user ?
+                { user && isOpen ?
                     <>
                         <span className='green'>Name:</span>
                         <span>{user.firstName}</span>
@@ -44,12 +44,9 @@ function Preview() {
                     setIsOpen(updatedState)
                 }}
                 isOpen={isOpen}
-                handleHighlightedItem={(highlightedItem, list) => {
-                    for (let i = 0; i < list.length; i++) {
-                        if (highlightedItem.innerText === list[i].firstName) {
-                            setUser(list[i])
-                        }
-                    }
+                handleHighlightedItem={(highlightedElement, highlightedItem) => {
+                    
+                            setUser(highlightedItem)
                 }}
             />
            
