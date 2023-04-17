@@ -1,32 +1,44 @@
 body {
   background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
+  text-align: center;
 }
 
 .green {
   color: #61dafb;
 }
 
-.align-left {
-  text-align: left;
-  width: fit-content;
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
-.align-right {
-  text-align: right;
-  width: fit-content;
+button {
+  width: 70px;
+  height: 33px;
+  margin-top: 5px;
+  background-color: transparent;
+  border: ridge 4px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  padding: 0;
 }
 
-.App {
-  text-align: center;
+.vertical-bar {
+  border: ridge 4px;
+  border-radius: 20px;
+  width: 2px;
+  height: 120px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
+
+/********** HEADER **********/
 
 .App-logo {
-  height: 25vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -46,20 +58,17 @@ body {
   }
 }
 
-.content {
+
+/********** APP CONTENT **********/
+
+.App-content {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly
 }
 
-.content-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 160px;
-}
-
-.preview-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 160px;
+section {
+  min-width: 33%;
 }
 
 .autocomplete-input {
@@ -70,16 +79,17 @@ body {
 }
 
 .dropdown-container {
-  /* background-color: antiquewhite; */
   overflow-y: auto;
   max-height: 200px;
 }
 
-.dropdown-item {
+.preview .dropdown-item {
   cursor: pointer;
   padding: 3px;
   border-radius: 5px;
 }
+
+/*********** PREVIEW ***********/
 
 .preview {
   display: flex;
@@ -87,6 +97,48 @@ body {
   width: fit-content;
 }
 
+.preview-container {
+  min-height: 185px;
+}
+
+.preview-display-container {
+  display: flex;
+  min-height: 157px;
+  border: ridge 6px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.preview-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 150px;
+  text-overflow: ellipsis;
+
+}
+
 .preview img {
   margin: auto;
+}
+
+.preview-bottom {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/********** FILTER **********/
+
+.filter {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 185px;
+}
+
+/********** NUMBERS **********/
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 185px;
 }

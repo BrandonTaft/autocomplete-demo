@@ -8,18 +8,18 @@ function Numbers() {
   const toggleDropDown = () => {
     setIsOpen(isOpen ? false : true)
   }
-  let x = 30
+  let x = 1000
   const numberArray = useMemo(() => getArray(x), [x])
 
 
   return (
-      <section className='content-container' >
+      <section className='numbers' >
         <AutoComplete
           list={numberArray}
           showAll={true}
-          updateIsOpen={(updatedState) => {
-            setIsOpen(updatedState)
-          }}
+          // updateIsOpen={(updatedState) => {
+          //   setIsOpen(updatedState)
+          // }}
           isOpen={isOpen}
         />
       </section>
