@@ -1,12 +1,24 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
 import axios from 'axios';
+
 import './App.css';
 
-function Preview() {
-    const [user, setUser] = useState();
+function Preview({
+    showPopUp,
+    setShowPopUp,
+    setCodeString,
+    setUser,
+    openDropDown,
+    setOpenDropDown,
+    setOpenCardDropDown,
+    setOpenAnotherDropDown,
+    setOpenFilterDropDown,
+    setOpenOrderDropDown
+}) {
+    
     const [response, setResponse] = useState();
-    const [openDropDown, setOpenDropDown] = useState(false);
+    
 
     useEffect(() => {
         const requestAPI = async () => {
@@ -26,46 +38,66 @@ function Preview() {
     }, []);
 
     const toggleDropDown = (() => {
-        setOpenDropDown(openDropDown ? false : true)
-      })
+        setOpenDropDown(!openDropDown)
+        setOpenCardDropDown(false)
+        setOpenAnotherDropDown(false)
+        setOpenFilterDropDown(false)
+        setOpenOrderDropDown(false)
+    })
+
+    const handleCode = (() => {
+        setShowPopUp(!showPopUp)
+        setCodeString(codeString)
+    })
+
+    const codeString = `
+    <button className='ignore' onClick={() => {
+        setOpenDropDown(!openDropDown)
+    }}/>
+
+    <AutoComplete
+        list={response}
+        getPropValue={ (item) => item.firstName }
+        showAll={true}
+        disableOutsideClick={true}
+        isOpen={openDropDown}
+        updateIsOpen={(openMe) => {
+            setOpenDropDown(openMe)
+        }}
+        handleHighlightedItem={(element, item) => {
+            setUser(item)
+        }}
+    />`;
 
     return (
-        <section className='preview'>
-            <div className="preview-container">
-                {user && openDropDown ?
-                    <div className='preview-display-container'>
-                        <div className='preview-display'>
-                            <span className='green'>User ID:</span>
-                            <span>{user.id.slice(-5)}</span>
-                            <span className='green'>Name:</span>
-                            <span>{user.firstName}</span>
-                            <span>{user.lastName}</span>
-                        </div>
-                        <div className='vertical-bar'></div>
-                        <img src={user.picture} alt="profile-pic" width={100} height={100} />
+        <>
+            <section>
+              
+                    <span className='green title'>Toggle Open / Close</span>
+                    <div className='description-container'>
+                    <span className='preview-description'>- Use the isOpen prop to control the dropdown</span>
+                    <span className='description'>- Use updateIsOpen to pass in a function to update state</span>
                     </div>
-                    : ""}
-            </div>
-            <div className='preview-bottom'>
-                <div className='column'>
-                    <span>Sort By:</span>
-                    <button className='ignore btn'  onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
+               
+                <div className='btn-box'>
+                    <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
+                    <button className='ignore btn' onClick={handleCode}>See Code</button>
                 </div>
                 <AutoComplete
                     list={response}
                     getPropValue={(listName) => listName.firstName}
                     showAll={true}
-                    updateIsOpen={(updatedState) => {
-                        setOpenDropDown(updatedState)
-                      }}
-                      isOpen={openDropDown}
-                    handleHighlightedItem={(highlightedElement, highlightedItem) => {
-
-                        setUser(highlightedItem)
+                    disableOutsideClick={true}
+                    isOpen={openDropDown}
+                    updateIsOpen={(isOpen) => {
+                        setOpenDropDown(isOpen)
+                    }}
+                    handleHighlightedItem={(element, item) => {
+                        setUser(item)
                     }}
                 />
-            </div>
-        </section>
+            </section>
+        </>
     );
 }
 

@@ -3,22 +3,21 @@ import { AutoComplete } from 'react-autocomplete-input-component';
 import axios from 'axios';
 import './App.css';
 
-function Filter({
+function Order({
   showPopUp,
   setShowPopUp,
   setCodeString,
   setAnotherUser,
-  filter,
-  setFilter,
-  openFilterDropDown,
-  setOpenFilterDropDown,
+  openOrderDropDown,
+  setOpenOrderDropDown,
   setOpenDropDown
 }) {
   
   const [response, setResponse] = useState();
+  const [sort, setSort] = useState(false);
   
-  const toggleFilter = (() => {
-    setFilter(filter => !filter)
+  const toggleSort = (() => {
+    setSort(sort => !sort)
   })
 
   const handleCode = (() => {
@@ -58,36 +57,36 @@ function Filter({
       }
     };
     requestAPI()
-  },[filter])
+  },[sort])
 
   useEffect(()=> {
-    if(openFilterDropDown){
+    if(openOrderDropDown){
       setOpenDropDown(false)
     }
-},[openFilterDropDown, setOpenDropDown])
+},[openOrderDropDown, setOpenDropDown])
 
   return (
     <section>
       
         <span className='green title'>Toggle Property Values</span>
-        <span className='description'>- Create a filter by changing the values in getPropValue</span>
+        <span className='description'>- Set the order of the values by changing the value in descending prop</span>
       
       <div className='btn-box'>
-        <button className='ignore btn' onClick={toggleFilter}>Sort By</button>
-        <div className='filter-sort'>{filter ? 'NAME' : 'I.D.'}</div>
+        <button className='ignore btn' onClick={toggleSort}>Sort By</button>
+        <div className='filter-sort'>{sort ? 'Ascending' : 'Descending'}</div>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
       
       <AutoComplete
         list={response}
         getPropValue={
-          filter ? (item) => `${item.firstName} ${item.lastName}`
-            : (item) => item.id.slice(-5)
+          (item) => `${item.firstName} ${item.lastName}`
         }
         showAll={true}
-        isOpen={openFilterDropDown}
+        descending={sort}
+        isOpen={openOrderDropDown}
                     updateIsOpen={(openMe) => {
-                      setOpenFilterDropDown(openMe)
+                      setOpenOrderDropDown(openMe)
                     }}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
@@ -99,4 +98,4 @@ function Filter({
   );
 }
 
-export default Filter;
+export default Order;
