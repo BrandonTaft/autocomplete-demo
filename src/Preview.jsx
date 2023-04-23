@@ -16,9 +16,9 @@ function Preview({
     setOpenFilterDropDown,
     setOpenOrderDropDown
 }) {
-    
+
     const [response, setResponse] = useState();
-    
+
 
     useEffect(() => {
         const requestAPI = async () => {
@@ -51,34 +51,34 @@ function Preview({
     })
 
     const codeString = `
-    <button className='ignore' onClick={() => {
-        setOpenDropDown(!openDropDown)
-    }}/>
+ <button className='ignore' onClick={() => {
+     setOpenDropDown(!openDropDown)
+ }}/>
 
-    <AutoComplete
-        list={response}
-        getPropValue={ (item) => item.firstName }
-        showAll={true}
-        disableOutsideClick={true}
-        isOpen={openDropDown}
-        updateIsOpen={(openMe) => {
-            setOpenDropDown(openMe)
-        }}
-        handleHighlightedItem={(element, item) => {
-            setUser(item)
-        }}
-    />`;
+ <AutoComplete
+     list={response}
+     getPropValue={ (item) => item.firstName }
+     showAll={true}
+     disableOutsideClick={true}
+     isOpen={openDropDown}
+     updateIsOpen={(openMe) => {
+         setOpenDropDown(openMe)
+     }}
+     handleHighlightedItem={(element, item) => {
+         setUser(item)
+     }}
+ />`;
 
     return (
         <>
             <section>
-              
-                    <span className='green title'>Toggle Open / Close</span>
-                    <div className='description-container'>
+
+                <span className='green title'>Toggle Open / Close</span>
+                <div className='description-container'>
                     <span className='preview-description'>- Use the isOpen prop to control the dropdown</span>
                     <span className='description'>- Use updateIsOpen to pass in a function to update state</span>
-                    </div>
-               
+                </div>
+
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
                     <button className='ignore btn' onClick={handleCode}>See Code</button>

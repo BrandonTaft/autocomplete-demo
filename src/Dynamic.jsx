@@ -25,20 +25,22 @@ function Dynamic({
     })
 
     const codeString = `
-<button className='ignore btn' onClick={() => {setList(true)}}>List #1</button>
-<button className='ignore btn' onClick={() => {setList(false)}}>List #2</button>
+<button className='ignore' onClick={toggleList}>
+    List #1
+</button>
+<button className='ignore' onClick={toggleList}>
+    List #2
+</button>
 
 <AutoComplete
     showAll={true}
     list={originalList ? response : numberArray}
-    getPropValue={
-        originalList ? (item) => {item.firstName} {item.lastName} : () => {}
-    }
+    getPropValue={(item) => {item.firstName}}
     isOpen={openAnotherDropDown}
     updateIsOpen={(openMe) => {
         setOpenAnotherDropDown(openMe)
     }}
-    handleHighlightedItem={(highlightedElement, highlightedItem) => {
+    handleHighlightedItem={(element, item) => {
         if (typeof highlightedItem === 'number') {
             setAnotherUser()
             setCard(display[highlightedItem])
@@ -87,7 +89,7 @@ function Dynamic({
             
                 <span className='green title'>Toggle List</span>
                 <div className='description-container'>
-                    <span className='description'>- Create a filter by changing the array passed into the list prop</span>
+                    <span className='description'>- Toggle the array passed into the list prop</span>
                     </div>
             <div className='btn-box'>
                 <button className='ignore btn' onClick={() => { setOriginalList(true) }}>List #1</button>

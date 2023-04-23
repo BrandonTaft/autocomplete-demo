@@ -1,6 +1,6 @@
 body {
   background-color: #282c34;
-  font-size: calc(6px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
   text-align: center;
   margin-bottom: 75px;
@@ -28,7 +28,7 @@ body {
 button {
   width: 75px;
   height: 33px;
-  margin-top: 5px;
+  margin: 5px 10px 0px;
   background-color: transparent;
   border: ridge 3px;
   border-radius: 20px;
@@ -37,19 +37,169 @@ button {
   padding: 2px;
 }
 
+/********** APP CONTENT **********/
+
+.App-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 400px;
+  margin-bottom: 4em;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-decoration: underline;
+  font-size: calc(10px + 2vmin);
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.description {
+  font-size: calc(7px + 2vmin);
+  margin: 2px 2px 10px;
+}
+
+.preview-description {
+  font-size: calc(7px + 2vmin);
+  margin: 3px 2px 0;
+}
+
+.autocomplete-input {
+  border: ridge 1px;
+  font-size: 1em;
+  border-color: #76d8f933;
+  border-radius: 20px;
+  background-color: #181c238a;
+  width: 200px;
+  padding: 8px;
+  margin: 1em 1em .25em;
+  border-radius: 22px;
+  box-shadow: black 3px 3px 5px;
+}
+
+.autocomplete-input:focus {
+  background-color: white;
+  outline: none;
+}
+
+.dropdown-container {
+  position: relative;
+  left: 7px;
+  overflow-y: auto;
+  max-height: 244px;
+  width: 210px;
+  margin: 0 auto;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.btn-box {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.popup {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+pre {
+  font-size: calc(4px + 2vmin) !important;
+  
+  text-align: left !important;
+  margin: 0;
+  border: ridge 4px;
+  border-radius: 20px !important;
+}
+
+code {
+  background-color: #61dafb;
+}
+
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 4%;
+  left: 80%;
+  color: blue;
+
+}
+
+.preview-section {
+  display: none;
+}
+
+
+/********** FILTER **********/
+.filter-sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  width: 70px;
+}
+
+
+/********** NUMBERS **********/
+
+@media only screen and (min-width: 992px) {
+  /*********** PREVIEW ***********/
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: ridge 6px;
+  border-radius: 20px;
+  padding: 1em;
+  height: 280px;
+  min-width: 20%;
+}
+
+.preview-section img {
+  margin: auto;
+}
+
+.preview-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 200px;
+  text-overflow: ellipsis;
+}
+
 .horizontal-bar {
   border: ridge 4px;
   border-radius: 20px;
   width: 50%;
   height: 2px;
   margin: 15px auto 5px;
-}
-
-/********** HEADER **********/
-
-.header {
-  height: 2em;
-  color:#76d8f9;
 }
 
 .App-logo {
@@ -75,157 +225,6 @@ button {
   }
 }
 
-
-/********** APP CONTENT **********/
-
-.App-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  position: relative;
- 
-  height: 360px;
-  min-width: 30%;
-  margin-bottom: 2em;
-}
-
-.section-header {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  text-decoration: underline;
-}
-
-.description-container {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin: 0 auto;
-}
-
-.description {
-  font-size: calc(2px + 2vmin);
-  margin: 2px 2px 16px;
-}
-
-.preview-description {
-  font-size: calc(2px + 2vmin);
-  margin: 2px 2px 0;
-}
-
-.autocomplete-input {
-  border: ridge 1px;
-  border-color: #76d8f933;
-  border-radius: 20px;
-  background-color: #181c238a;
-  width: 200px;
-  padding: 15px;
-  margin: 1em 1em .25em;
-  
-  border-radius: 22px;
-  box-shadow: black 3px 3px 5px;
-}
-
-.autocomplete-input:focus {
-  background-color: white;
-  outline: none;
-}
-
-.dropdown-container {
-  position: relative;
-  left: 7px;
-  overflow-y: auto;
-  max-height: 240px;
-  width: 210px;
-  margin: 0 auto;
-}
-
-.dropdown-item {
-  cursor: pointer;
-  padding: 3px;
-  border-radius: 5px;
-}
-
-.btn-box {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.popup {
-  position: fixed;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-pre {
-  font-size: calc(4px + 2vmin);
-  font-weight: 600;
-  text-align: left;
-  margin: 0;
-  border: ridge 4px;
-  border-radius: 20px;
-}
-
-code {
-  background-color: #61dafb;
-}
-
-.close-btn {
-  cursor: pointer;
-  position: absolute;
-  top: 4%;
-  left: 80%;
-  color: blue;
-
-}
-
-/*********** PREVIEW ***********/
-.preview-section {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  flex-direction: column;
-  border: ridge 6px;
-  border-radius: 20px;
-  padding: 1em;
-  height: 280px;
-  min-width: 20%;
-  /* margin-top: 2em; */
-}
-
-.preview-section img {
-  margin: auto;
-}
-
-.preview-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 200px;
-  text-overflow: ellipsis;
-}
-
-/********** FILTER **********/
-.filter-sort {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  width: 70px;
-}
-
-
-/********** NUMBERS **********/
 .card {
   position: relative;
   background-color: white;
@@ -274,4 +273,7 @@ code {
   font-size: 2em;
   font-weight: 600;
   transform: rotate(180deg);
+}
+
+
 }

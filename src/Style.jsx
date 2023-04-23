@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
 import './App.css';
 
-function Numbers({
+function Style({
   showPopUp,
   setShow,
   setShowPopUp,
@@ -40,9 +40,11 @@ function Numbers({
   return (
     <section >
       
-        <span className='green title'>Numbers</span>
+        <span className='green title'>Style</span>
         <div className='description-container'>
-        <span className='description'>- Values shown in dropdown can be Numbers or Strings</span>
+        <span className='description'>- Style can be added using existing class names or by passing in an Object Variable for the seperate element.</span>
+        <span className='description'>- The input element can be styled using inputProps.</span>
+        <span className='description'>- The highlighted element can be styled using the HTMLelement passed in the handleHighlightedItem </span>
         </div>
       <div className='btn-box'>
 
@@ -64,4 +66,4 @@ function Numbers({
   );
 }
 
-export default Numbers;
+export default Style;

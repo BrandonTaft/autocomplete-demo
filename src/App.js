@@ -7,6 +7,7 @@ import Numbers from './Numbers';
 import Filter from './Filter';
 import Dynamic from './Dynamic';
 import Order from './Order';
+import Style from './Style';
 import logo from './logo.svg';
 import './App.css';
 
@@ -106,7 +107,7 @@ function App() {
           setOpenCardDropDown={setOpenCardDropDown}
           setOpenOrderDropDown={setOpenOrderDropDown}
         />
-        <section></section>
+        {/* <section></section> */}
         <Filter
           filter={filter}
           setFilter={setFilter}
@@ -131,7 +132,7 @@ function App() {
           setOpenAnotherDropDown={setOpenDynamicDropDown}
           numberArray={numberArray}
         />
-        <section></section>
+        {/* <section></section> */}
         <Order
           setAnotherUser={setUser}
           showPopUp={showPopUp}
@@ -153,8 +154,8 @@ function App() {
           openCardDropDown={openCardDropDown}
           setOpenCardDropDown={setOpenCardDropDown}
         />
-        <section></section>
-        <Numbers
+        {/* <section></section> */}
+        <Style
         setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}
           setShow={setShow}

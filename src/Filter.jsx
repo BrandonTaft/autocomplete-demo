@@ -68,10 +68,10 @@ function Filter({
 
   return (
     <section>
-      
-        <span className='green title'>Toggle Property Values</span>
+      <span className='green title'>Toggle Property Values</span>
+      <div className='description-container'>
         <span className='description'>- Create a filter by changing the values in getPropValue</span>
-      
+      </div>
       <div className='btn-box'>
         <button className='ignore btn' onClick={toggleFilter}>Sort By</button>
         <div className='filter-sort'>{filter ? 'NAME' : 'I.D.'}</div>
