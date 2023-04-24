@@ -51,6 +51,7 @@ function Preview({
     })
 
     const codeString = `
+
  <button className='ignore' onClick={() => {
      setOpenDropDown(!openDropDown)
  }}/>
@@ -61,24 +62,18 @@ function Preview({
      showAll={true}
      disableOutsideClick={true}
      isOpen={openDropDown}
-     updateIsOpen={(openMe) => {
-         setOpenDropDown(openMe)
+     updateIsOpen={(isOpen) => {
+         setOpenDropDown(isOpen)
      }}
-     handleHighlightedItem={(element, item) => {
-         setUser(item)
-     }}
- />`;
+ />
+ `;
 
     return (
         <>
-            <section>
-
+            <section className='preview'>
                 <span className='green title'>Toggle Open / Close</span>
-                <div className='description-container'>
-                    <span className='preview-description'>- Use the isOpen prop to control the dropdown</span>
-                    <span className='description'>- Use updateIsOpen to pass in a function to update state</span>
-                </div>
-
+                <span className='description'>- Use the <span className='highlight'>isOpen</span> prop to control the dropdown</span>
+                <span className='description'>- Use <span className='highlight'>updateIsOpen</span> to pass in a function to update state</span>
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
                     <button className='ignore btn' onClick={handleCode}>See Code</button>

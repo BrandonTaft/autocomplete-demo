@@ -26,6 +26,7 @@ function Order({
   })
 
   const codeString = `
+
 <button className='ignore btn' onClick={toggleSort}>
   { sort ? 'Descending' : 'Ascending'}
 </button>
@@ -35,16 +36,17 @@ const toggleSort = (() => {
 })
 
 <AutoComplete
-  list={response}
-  showAll={true}
-  descending={sort}
-  getPropValue={
-    (item) => {item.firstName}
-  }
-  handleHighlightedItem={(element, item) => {
-    setUser(item)
-  }}
-/>`
+    list={response}
+    showAll={true}
+    descending={sort}
+    getPropValue={
+      (item) => {item.firstName}
+    }
+    handleHighlightedItem={(element, item) => {
+      setUser(item)
+    }}
+/>
+`
 
 
   useEffect(() => {
@@ -71,15 +73,12 @@ const toggleSort = (() => {
 },[openOrderDropDown, setOpenDropDown])
 
   return (
-    <section>
-      
+    <section className='order'>
         <span className='green title'>Toggle Ascending / Descending</span>
-        <div className='description-container'>
-        <span className='description'>- Change the order of the values shown in the dropdown by changing the value in descending prop</span>
-    </div>
+        <span className='description'>- Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop</span>
       <div className='btn-box'>
         <button className='ignore btn' onClick={toggleSort}>Sort By</button>
-        <div className='filter-sort'>{sort ? 'Descending' : 'Ascending'}</div>
+        <div className='descending'>{sort ? 'Descending' : 'Ascending'}</div>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
       

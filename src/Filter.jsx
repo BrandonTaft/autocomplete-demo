@@ -14,9 +14,9 @@ function Filter({
   setOpenFilterDropDown,
   setOpenDropDown
 }) {
-  
+
   const [response, setResponse] = useState();
-  
+
   const toggleFilter = (() => {
     setFilter(filter => !filter)
   })
@@ -27,20 +27,22 @@ function Filter({
   })
 
   const codeString = `
+  
 <button className='ignore btn' onClick={toggleFilter}>
   {filter ? 'NAME' : 'I.D.'}
 </button>
 
 <AutoComplete
-  list={response}
-  showAll={true}
-  getPropValue={
-    filter ? (item) => {item.name} : (item) => item.id
-  }
-  handleHighlightedItem={(element, item) => {
-    setUser(item)
-  }}
-/>`
+   list={response}
+   showAll={true}
+   getPropValue={
+     filter ? (item) => item.name : (item) => item.id
+   }
+   handleHighlightedItem={(element, item) => {
+     setUser(item)
+   }}
+/>
+  `
 
 
   useEffect(() => {
@@ -58,26 +60,34 @@ function Filter({
       }
     };
     requestAPI()
-  },[filter])
+  }, [filter])
 
-  useEffect(()=> {
-    if(openFilterDropDown){
+  useEffect(() => {
+    if (openFilterDropDown) {
       setOpenDropDown(false)
     }
-},[openFilterDropDown, setOpenDropDown])
+  }, [openFilterDropDown, setOpenDropDown])
 
   return (
     <section>
-      <span className='green title'>Toggle Property Values</span>
-      <div className='description-container'>
-        <span className='description'>- Create a filter by changing the values in getPropValue</span>
-      </div>
+      <span className='green title'>
+        Toggle Property Values
+      </span>
+      <span className='description'>
+        - Create a filter by changing the values in <span className='highlight'>getPropValue</span>
+      </span>
       <div className='btn-box'>
-        <button className='ignore btn' onClick={toggleFilter}>Sort By</button>
-        <div className='filter-sort'>{filter ? 'NAME' : 'I.D.'}</div>
-        <button className='ignore btn' onClick={handleCode}>See Code</button>
+        <button className='ignore btn' onClick={toggleFilter}>
+          Sort By
+        </button>
+        <div className='filter-sort'>
+          {filter ? 'NAME' : 'I.D.'}
+        </div>
+        <button className='ignore btn' onClick={handleCode}>
+          See Code
+        </button>
       </div>
-      
+
       <AutoComplete
         list={response}
         getPropValue={
@@ -86,9 +96,9 @@ function Filter({
         }
         showAll={true}
         isOpen={openFilterDropDown}
-                    updateIsOpen={(openMe) => {
-                      setOpenFilterDropDown(openMe)
-                    }}
+        updateIsOpen={(openMe) => {
+          setOpenFilterDropDown(openMe)
+        }}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
         }}

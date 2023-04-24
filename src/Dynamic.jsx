@@ -25,6 +25,7 @@ function Dynamic({
     })
 
     const codeString = `
+
 <button className='ignore' onClick={toggleList}>
     List #1
 </button>
@@ -36,16 +37,16 @@ function Dynamic({
     showAll={true}
     list={originalList ? response : numberArray}
     getPropValue={(item) => {item.firstName}}
-    isOpen={openAnotherDropDown}
-    updateIsOpen={(openMe) => {
-        setOpenAnotherDropDown(openMe)
+    isOpen={openDropDown}
+    updateIsOpen={(isOpen) => {
+        setOpenDropDown(isOpen)
     }}
     handleHighlightedItem={(element, item) => {
-        if (typeof highlightedItem === 'number') {
-            setAnotherUser()
-            setCard(display[highlightedItem])
+        if (typeof item === 'number') {
+            setUser()
+            setCard(display[item])
         } else {
-            setAnotherUser(highlightedItem)
+            setUser(item)
         }
     }}
 />`
@@ -86,11 +87,8 @@ function Dynamic({
 
     return (
         <section>
-            
-                <span className='green title'>Toggle List</span>
-                <div className='description-container'>
-                    <span className='description'>- Toggle the array passed into the list prop</span>
-                    </div>
+            <span className='green title'>Toggle List</span>
+            <span className='description'>- Toggle the array passed into the <span className='highlight'>list</span> prop</span>
             <div className='btn-box'>
                 <button className='ignore btn' onClick={() => { setOriginalList(true) }}>List #1</button>
                 <button className='ignore btn' onClick={() => { setOriginalList(false) }}>List #2</button>

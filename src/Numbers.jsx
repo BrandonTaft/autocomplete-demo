@@ -29,23 +29,21 @@ function Numbers({
     setCodeString(codeString)
   })
 
-  const codeString = `<AutoComplete
-  list={numberArray}
-  showAll={true}
-  handleHighlightedItem={(element, item) => {
+  const codeString = `
+  
+<AutoComplete
+    list={numberArray}
+    showAll={true}
+    handleHighlightedItem={(element, item) => {
       setCard(item)
-  }}
+    }}
 />`
 
   return (
     <section >
-      
         <span className='green title'>Numbers</span>
-        <div className='description-container'>
-        <span className='description'>- Values shown in dropdown can be Numbers or Strings</span>
-        </div>
+        <span className='description'>- Values shown in dropdown can be <span className='highlight'>Numbers</span> or <span className='highlight'>Strings</span></span>
       <div className='btn-box'>
-
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
       <AutoComplete

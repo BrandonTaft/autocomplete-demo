@@ -16,11 +16,12 @@ SyntaxHighlighter.registerLanguage('jsx', jsx);
 function App() {
   const [showPopUp, setShowPopUp] = useState(false);
   const [codeString, setCodeString] = useState("");
-  const [openDropDown, setOpenDropDown] = useState(false);
-  const [openFilterDropDown, setOpenFilterDropDown] = useState(false);
-  const [openOrderDropDown, setOpenOrderDropDown] = useState(false);
-  const [openDynamicDropDown, setOpenDynamicDropDown] = useState(false);
-  const [openCardDropDown, setOpenCardDropDown] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
+  const [openOrder, setOpenOrder] = useState(false);
+  const [openDynamic, setOpenDynamic] = useState(false);
+  const [openCard, setOpenCard] = useState(false);
+  const [openStyle, setOpenStyle] = useState(false);
   const [filter, setFilter] = useState(true)
   const [show, setShow] = useState(true);
   const [user, setUser] = useState();
@@ -60,15 +61,15 @@ function App() {
         : null
       }
       <div className='header'>
-        <h1>DEMO</h1>
+        <h1> DEMO </h1>
       </div>
       <div className='App-content'>
         <section className='preview-section'>
-          {!openDropDown && !openFilterDropDown && !openDynamicDropDown && !openCardDropDown && !openOrderDropDown ?
+          {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle ?
             <img src={logo} className="App-logo" alt="logo" />
             : null
           }
-          {user && (openDropDown || openFilterDropDown || openDynamicDropDown || openOrderDropDown) ?
+          {user && (open || openFilter || openDynamic || openOrder) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -80,7 +81,7 @@ function App() {
               </div>
             </>
             : null}
-          {card && ( openCardDropDown || openDynamicDropDown ) && show ?
+          {card && ( openCard || openDynamic || openStyle ) && show ?
             <>
               <div className='preview-display'>
                 <div className='card' style={{color: card.color % 2===0 ? 'black' : 'red'}}>
@@ -100,14 +101,13 @@ function App() {
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
-          openDropDown={openDropDown}
-          setOpenDropDown={setOpenDropDown}
-          setOpenFilterDropDown={setOpenFilterDropDown}
-          setOpenAnotherDropDown={setOpenDynamicDropDown}
-          setOpenCardDropDown={setOpenCardDropDown}
-          setOpenOrderDropDown={setOpenOrderDropDown}
+          openDropDown={open}
+          setOpenDropDown={setOpen}
+          setOpenFilterDropDown={setOpenFilter}
+          setOpenAnotherDropDown={setOpenDynamic}
+          setOpenCardDropDown={setOpenCard}
+          setOpenOrderDropDown={setOpenOrder}
         />
-        {/* <section></section> */}
         <Filter
           filter={filter}
           setFilter={setFilter}
@@ -115,9 +115,9 @@ function App() {
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
-          setOpenDropDown={setOpenDropDown}
-          openFilterDropDown={openFilterDropDown}
-          setOpenFilterDropDown={setOpenFilterDropDown}
+          setOpenDropDown={setOpen}
+          openFilterDropDown={openFilter}
+          setOpenFilterDropDown={setOpenFilter}
         />
         <Dynamic
           setAnotherUser={setUser}
@@ -127,20 +127,19 @@ function App() {
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
-          setOpenDropDown={setOpenDropDown}
-          openAnotherDropDown={openDynamicDropDown}
-          setOpenAnotherDropDown={setOpenDynamicDropDown}
+          setOpenDropDown={setOpen}
+          openAnotherDropDown={openDynamic}
+          setOpenAnotherDropDown={setOpenDynamic}
           numberArray={numberArray}
         />
-        {/* <section></section> */}
         <Order
           setAnotherUser={setUser}
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
-          setOpenDropDown={setOpenDropDown}
-          openOrderDropDown={openOrderDropDown}
-          setOpenOrderDropDown={setOpenOrderDropDown}
+          setOpenDropDown={setOpen}
+          openOrderDropDown={openOrder}
+          setOpenOrderDropDown={setOpenOrder}
         />
         <Numbers
         setShowPopUp={setShowPopUp}
@@ -150,11 +149,10 @@ function App() {
           setCard={setCard}
           display={display}
           numberArray={numberArray}
-          setOpenDropDown={setOpenDropDown}
-          openCardDropDown={openCardDropDown}
-          setOpenCardDropDown={setOpenCardDropDown}
+          setOpenDropDown={setOpen}
+          openCardDropDown={openCard}
+          setOpenCardDropDown={setOpenCard}
         />
-        {/* <section></section> */}
         <Style
         setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}
@@ -163,9 +161,9 @@ function App() {
           setCard={setCard}
           display={display}
           numberArray={numberArray}
-          setOpenDropDown={setOpenDropDown}
-          openCardDropDown={openCardDropDown}
-          setOpenCardDropDown={setOpenCardDropDown}
+          setOpenDropDown={setOpen}
+          openStyleDropDown={openStyle}
+          setOpenStyleDropDown={setOpenStyle}
         />
       </div>
     </>
