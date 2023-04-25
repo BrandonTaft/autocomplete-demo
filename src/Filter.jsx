@@ -73,9 +73,11 @@ function Filter({
       <span className='green title'>
         Toggle Property Values
       </span>
-      <span className='description'>
-        - Create a filter by changing the values in <span className='highlight'>getPropValue</span>
-      </span>
+      <ul className='description-container'>
+        <li className='description'>
+          Create a filter by changing the values in <span className='highlight'>getPropValue</span>
+        </li>
+      </ul>
       <div className='btn-box'>
         <button className='ignore btn' onClick={toggleFilter}>
           Sort By

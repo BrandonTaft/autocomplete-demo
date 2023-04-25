@@ -12,10 +12,10 @@ function Order({
   setOpenOrderDropDown,
   setOpenDropDown
 }) {
-  
+
   const [response, setResponse] = useState();
   const [sort, setSort] = useState(false);
-  
+
   const toggleSort = (() => {
     setSort(sort => !sort)
   })
@@ -64,24 +64,26 @@ const toggleSort = (() => {
       }
     };
     requestAPI()
-  },[sort])
+  }, [sort])
 
-  useEffect(()=> {
-    if(openOrderDropDown){
+  useEffect(() => {
+    if (openOrderDropDown) {
       setOpenDropDown(false)
     }
-},[openOrderDropDown, setOpenDropDown])
+  }, [openOrderDropDown, setOpenDropDown])
 
   return (
     <section className='order'>
-        <span className='green title'>Toggle Ascending / Descending</span>
-        <span className='description'>- Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop</span>
+      <span className='green title'>Toggle Ascending / Descending</span>
+      <ul className='description-container'>
+        <li className='description'>Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop</li>
+      </ul>
       <div className='btn-box'>
         <button className='ignore btn' onClick={toggleSort}>Sort By</button>
         <div className='descending'>{sort ? 'Descending' : 'Ascending'}</div>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
-      
+
       <AutoComplete
         list={response}
         getPropValue={
@@ -90,9 +92,9 @@ const toggleSort = (() => {
         showAll={true}
         descending={sort}
         isOpen={openOrderDropDown}
-                    updateIsOpen={(openMe) => {
-                      setOpenOrderDropDown(openMe)
-                    }}
+        updateIsOpen={(openMe) => {
+          setOpenOrderDropDown(openMe)
+        }}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
         }}

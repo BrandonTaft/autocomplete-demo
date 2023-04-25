@@ -72,8 +72,10 @@ function Preview({
         <>
             <section className='preview'>
                 <span className='green title'>Toggle Open / Close</span>
-                <span className='description'>- Use the <span className='highlight'>isOpen</span> prop to control the dropdown</span>
-                <span className='description'>- Use <span className='highlight'>updateIsOpen</span> to pass in a function to update state</span>
+                <ul className='description-container'>
+                <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown</li>
+                <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a function to update state</li>
+                </ul>
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
                     <button className='ignore btn' onClick={handleCode}>See Code</button>

@@ -161,9 +161,9 @@ function App() {
           setCard={setCard}
           display={display}
           numberArray={numberArray}
-          setOpenDropDown={setOpen}
-          openStyleDropDown={openStyle}
-          setOpenStyleDropDown={setOpenStyle}
+          setOpen={setOpen}
+          openStyle={openStyle}
+          setOpenStyle={setOpenStyle}
         />
       </div>
     </>

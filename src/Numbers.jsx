@@ -15,14 +15,14 @@ function Numbers({
   setOpenCardDropDown
 }) {
 
-  useEffect(()=> {
-    if(openCardDropDown){
+  useEffect(() => {
+    if (openCardDropDown) {
       setShow(true)
       setOpenDropDown(false)
     } else {
       setShow(false)
     }
-},[openCardDropDown, setOpenDropDown, setShow])
+  }, [openCardDropDown, setOpenDropDown, setShow])
 
   const handleCode = (() => {
     setShowPopUp(!showPopUp)
@@ -41,8 +41,10 @@ function Numbers({
 
   return (
     <section >
-        <span className='green title'>Numbers</span>
-        <span className='description'>- Values shown in dropdown can be <span className='highlight'>Numbers</span> or <span className='highlight'>Strings</span></span>
+      <span className='green title'>Numbers</span>
+      <ul className='description-container'>
+        <li className='description'>Values can include <span className='highlight'>Numbers</span> or <span className='highlight'>Strings</span></li>
+      </ul>
       <div className='btn-box'>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>

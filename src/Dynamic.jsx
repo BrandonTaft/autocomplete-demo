@@ -88,7 +88,9 @@ function Dynamic({
     return (
         <section>
             <span className='green title'>Toggle List</span>
-            <span className='description'>- Toggle the array passed into the <span className='highlight'>list</span> prop</span>
+            <ul className='description-container'>
+                <li className='description'>Toggle the array passed into the <span className='highlight'>list</span> prop</li>
+            </ul>
             <div className='btn-box'>
                 <button className='ignore btn' onClick={() => { setOriginalList(true) }}>List #1</button>
                 <button className='ignore btn' onClick={() => { setOriginalList(false) }}>List #2</button>

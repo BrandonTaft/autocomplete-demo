@@ -41,6 +41,7 @@ h1 {
   width: fit-content;
   margin: 10px auto;
 }
+
 button {
   width: 75px;
   height: 33px;
@@ -88,9 +89,14 @@ section {
   margin-bottom: .25em;
 }
 
+.description-container {
+  margin: 0 auto;
+  list-style-position: outside;
+  padding-inline-start: 20px;
+  text-align: start;
+}
+
 .description {
-  font-size: calc(9px + 2vmin);
-  text-align: left;
   padding: 6px 0;
 }
 
@@ -177,7 +183,7 @@ code {
 
 
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 820px) {
 
   .App-content {
     display: flex;
@@ -190,6 +196,16 @@ code {
     width: 50%;
     height: 700px;
     margin-bottom: 4em;
+  }
+
+  button {
+    width: 100px;
+    height: 40px;
+    font-size: .65em;
+  }
+
+  .autocomplete-input {
+    width: 320px;
   }
 
   .dropdown-container {
@@ -209,9 +225,9 @@ code {
     right: 5%;
     border: ridge 6px;
     border-radius: 20px;
-    padding: 1em;
-    height: 400px;
-   width: 35%;
+    padding-bottom: 1em;
+    height: 350px;
+    width: 35%;
   }
 
   .preview-section img {
@@ -229,15 +245,14 @@ code {
   .horizontal-bar {
     border: ridge 4px;
     border-radius: 20px;
-    width: 50%;
-    height: 2px;
-    margin: 15px auto 5px;
+    width: 60%;
+    height: 4px;
+    margin: 0px auto 5px;
   }
 
   .App-logo {
     z-index: 1;
     transform: translate(-50%, -50%);
-    height: 25vmin;
     pointer-events: none;
   }
 
@@ -258,12 +273,16 @@ code {
   }
 
   .card {
-    position: relative;
+    position: absolute;
     background-color: white;
-    height: 280px;
-    width: 200px;
+    height: 320px;
+    width: 240px;
     margin: auto;
     border-radius: 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .middle-card {
@@ -314,6 +333,95 @@ code {
   .style {
     height: 1000px;
   }
+}
 
+@media only screen and (min-width: 1020px) {
+  body {
+    font-size: calc(4px + 2vmin);
+  }
 
+  .title {
+    font-size: calc(6px + 2vmin);
+  }
+
+  .preview-section {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 15%;
+    right: 10%;
+    border: ridge 6px;
+    border-radius: 20px;
+    padding-bottom: 1em;
+    height: 320px;
+    width: 25%;
+  }
+
+  button {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    font-size: .75em;
+  }
+
+  .autocomplete-input {
+    width: 280px;
+  }
+
+  .top-left-value {
+    right: 82%;
+    font-size: 2.75em;
+  }
+
+  .top-left-suit {
+    top:11%;
+    right: 81%;
+    font-size: 3em;
+  }
+
+  .bottom-right-value {
+    bottom: 0;
+    left: 80%;
+    font-size: 2.75em;
+  }
+
+  .bottom-right-suit {
+    bottom: 11%;
+    left: 79%;
+    font-size: 3em;
+  }
+
+}
+
+@media only screen and (min-width: 1420px) {
+  .top-left-value {
+    right: 83%;
+    font-size: 2.25em;
+  }
+
+  .top-left-suit {
+    top:14%;
+    right: 81%;
+    font-size: 2.5em;
+  }
+
+  .bottom-right-value {
+    bottom: 0;
+    left: 80%;
+    font-size: 2.25em;
+  }
+
+  .bottom-right-suit {
+    bottom: 14%;
+    left: 77%;
+    font-size: 2.5em;
+  }
+
+  .descending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 6px 0px;
+    min-width: 115px;
+  }
 }
