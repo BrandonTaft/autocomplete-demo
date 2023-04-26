@@ -14,7 +14,8 @@ function Preview({
     setOpenCardDropDown,
     setOpenAnotherDropDown,
     setOpenFilterDropDown,
-    setOpenOrderDropDown
+    setOpenOrderDropDown,
+    setOpenStyle
 }) {
 
     const [response, setResponse] = useState();
@@ -43,6 +44,7 @@ function Preview({
         setOpenAnotherDropDown(false)
         setOpenFilterDropDown(false)
         setOpenOrderDropDown(false)
+        setOpenStyle(false)
     })
 
     const handleCode = (() => {

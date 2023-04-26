@@ -29,32 +29,25 @@ function Style({
     setCodeString(codeString)
   })
 
-  const codeString = `/********* CSS *********/
-  .wrapper {
-    display: inline-block;
-  }
-  .autocomplete-input {
-    background-color: #181c238a;
-    box-shadow: black 3px 3px 6px;
-  }
-  .autocomplete-input:focus {
-    background-color: white;
-  }
-  .dropdown-container {
-    overflow-y: auto;
-  }
-  /**********************/
+  const codeString = `.wrapper {
+  display: inline-block;
+}
+.autocomplete-input {
+  background-color: #181c238a;
+  box-shadow: black 3px 3px 6px;
+}
+.dropdown-container {
+  overflow-y: auto;
+}
+
   <Autocomplete 
       inputProps={{
         placeholder: "search...",
         onMouseOver: () => {
           setOpenDropDown(true)
-        },
-      }}
-      listItemStyle={{ cursor: "pointer" }}
+        }}}
       highlightedItemStyle={{
         backgroundColor:"#76d8f9",
-        color: "blue",
         fontSize:"inherit"
       }}
       handleHighlightedItem={(element, item) => {

@@ -81,15 +81,20 @@ function App() {
               </div>
             </>
             : null}
-          {card && ( openCard || openDynamic || openStyle ) && show ?
+          {card && (openCard || openDynamic || openStyle) && show ?
             <>
               <div className='preview-display'>
-                <div className='card' style={{color: card.color % 2===0 ? 'black' : 'red'}}>
-                <span className='top-left-value'>{card.value}</span>
-                <span className='top-left-suit'>{card.suit}</span>
-                <span className='middle-card'>{card.value}</span>
-                <span className='bottom-right-suit'>{card.suit}</span>
-                <span className='bottom-right-value'>{card.value}</span>
+                <div className='card' style={{ color: card.color % 2 === 0 ? 'black' : 'red' }}>
+                  <div className='top-left'>
+                    <span >{card.value}</span>
+                    <span className='suit-top' >{card.suit}</span>
+                  </div>
+                  <span className='middle-card'>{card.value}</span>
+                  <div className='bottom-right'>
+                  <span >{card.value}</span>
+                  <span className='suit-top'>{card.suit}</span>
+                  
+                  </div>
                 </div>
               </div>
             </>
@@ -107,6 +112,7 @@ function App() {
           setOpenAnotherDropDown={setOpenDynamic}
           setOpenCardDropDown={setOpenCard}
           setOpenOrderDropDown={setOpenOrder}
+          setOpenStyle={setOpenStyle}
         />
         <Filter
           filter={filter}
@@ -142,7 +148,7 @@ function App() {
           setOpenOrderDropDown={setOpenOrder}
         />
         <Numbers
-        setShowPopUp={setShowPopUp}
+          setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}
           setShow={setShow}
           setCodeString={setCodeString}
@@ -154,7 +160,7 @@ function App() {
           setOpenCardDropDown={setOpenCard}
         />
         <Style
-        setShowPopUp={setShowPopUp}
+          setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}
           setShow={setShow}
           setCodeString={setCodeString}
