@@ -15,9 +15,14 @@ function Order({
 
   const [response, setResponse] = useState();
   const [sort, setSort] = useState(false);
+  const [showList, setShowList] = useState(true);
 
   const toggleSort = (() => {
     setSort(sort => !sort)
+  })
+
+  const toggleShowAll = (() => {
+    setShowList(showList => !showList)
   })
 
   const handleCode = (() => {
@@ -26,18 +31,16 @@ function Order({
   })
 
   const codeString = `
-
+<button className='ignore btn' onClick={toggleShowAll}>
+  {showList ? 'Dont Show' : 'Show All'}
+</button>
 <button className='ignore btn' onClick={toggleSort}>
   { sort ? 'Descending' : 'Ascending'}
 </button>
 
-const toggleSort = (() => {
-    setSort(sort => !sort)
-})
-
 <AutoComplete
     list={response}
-    showAll={true}
+    showAll={showList}
     descending={sort}
     getPropValue={
       (item) => {item.firstName}
@@ -74,11 +77,13 @@ const toggleSort = (() => {
 
   return (
     <section className='order'>
-      <span className='green title'>Toggle Ascending / Descending</span>
+      <span className='green title'>Customize Behavior</span>
       <ul className='description-container'>
-        <li className='description'>Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop</li>
+      <li className='description'>If <span className='highlight'>showAll</span> is not set to <span className='highlight'>true</span>, text must be entered matching a stored value for the dropdown to open.</li>
+        <li className='description'>Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop.</li>
       </ul>
       <div className='btn-box'>
+      <button className='ignore btn' onClick={toggleShowAll}>{showList ? 'Dont Show' : 'Show All'}</button>
         <button className='ignore btn' onClick={toggleSort}>Sort By</button>
         <div className='descending'>{sort ? 'Descending' : 'Ascending'}</div>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
@@ -89,7 +94,7 @@ const toggleSort = (() => {
         getPropValue={
           (item) => `${item.firstName} ${item.lastName}`
         }
-        showAll={true}
+        showAll={showList}
         descending={sort}
         isOpen={openOrderDropDown}
         updateIsOpen={(openMe) => {
@@ -97,6 +102,9 @@ const toggleSort = (() => {
         }}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
+        }}
+        onSelect={(element,item) => {
+          console.log(element,item)
         }}
       />
 

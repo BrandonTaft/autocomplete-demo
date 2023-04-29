@@ -25,30 +25,20 @@ function Dynamic({
     })
 
     const codeString = `
-
-<button className='ignore' onClick={toggleList}>
-    List #1
-</button>
-<button className='ignore' onClick={toggleList}>
-    List #2
-</button>
-
 <AutoComplete
     showAll={true}
     list={originalList ? response : numberArray}
     getPropValue={(item) => {item.firstName}}
-    isOpen={openDropDown}
-    updateIsOpen={(isOpen) => {
-        setOpenDropDown(isOpen)
-    }}
     handleHighlightedItem={(element, item) => {
         if (typeof item === 'number') {
-            setUser()
-            setCard(display[item])
+            setCard(cards[item])
         } else {
             setUser(item)
         }
     }}
+    onSelect={(element,item) => {
+        console.log(element,item)
+      }}
 />`
 
 
@@ -89,7 +79,7 @@ function Dynamic({
         <section>
             <span className='green title'>Toggle List</span>
             <ul className='description-container'>
-                <li className='description'>Toggle the array passed into the <span className='highlight'>list</span> prop</li>
+                <li className='description'>Toggle the array passed into the <span className='highlight'>list</span> prop.</li>
             </ul>
             <div className='btn-box'>
                 <button className='ignore btn' onClick={() => { setOriginalList(true) }}>List #1</button>
@@ -114,6 +104,9 @@ function Dynamic({
                         setAnotherUser(highlightedItem)
                     }
                 }}
+                onSelect={(element,item) => {
+                    console.log(element,item)
+                  }}
             />
 
 

@@ -54,29 +54,29 @@ function Preview({
 
     const codeString = `
 
+ const [open, setOpen] = useState(false);
  <button className='ignore' onClick={() => {
-     setOpenDropDown(!openDropDown)
+     setOpen(!open)
  }}/>
 
  <AutoComplete
      list={response}
-     getPropValue={ (item) => item.firstName }
+     getPropValue={(item) => item.firstName}
      showAll={true}
      disableOutsideClick={true}
-     isOpen={openDropDown}
-     updateIsOpen={(isOpen) => {
-         setOpenDropDown(isOpen)
+     isOpen={open}
+     updateIsOpen={(update) => {
+         setOpen(update)
      }}
- />
- `;
+     `;
 
     return (
         <>
             <section className='preview'>
                 <span className='green title'>Toggle Open / Close</span>
                 <ul className='description-container'>
-                <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown</li>
-                <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a function to update state</li>
+                <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown.</li>
+                <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a set function to update state.</li>
                 </ul>
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
@@ -88,12 +88,15 @@ function Preview({
                     showAll={true}
                     disableOutsideClick={true}
                     isOpen={openDropDown}
-                    updateIsOpen={(isOpen) => {
-                        setOpenDropDown(isOpen)
+                    updateIsOpen={(update) => {
+                        setOpenDropDown(update)
                     }}
                     handleHighlightedItem={(element, item) => {
                         setUser(item)
                     }}
+                    onSelect={(element,item) => {
+                        console.log(element,item)
+                      }}
                 />
             </section>
         </>

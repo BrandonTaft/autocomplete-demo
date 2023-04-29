@@ -28,10 +28,6 @@ function Filter({
 
   const codeString = `
   
-<button className='ignore btn' onClick={toggleFilter}>
-  {filter ? 'NAME' : 'I.D.'}
-</button>
-
 <AutoComplete
    list={response}
    showAll={true}
@@ -41,6 +37,9 @@ function Filter({
    handleHighlightedItem={(element, item) => {
      setUser(item)
    }}
+   onSelect={(element,item) => {
+    console.log(element,item)
+  }}
 />
   `
 
@@ -75,7 +74,7 @@ function Filter({
       </span>
       <ul className='description-container'>
         <li className='description'>
-          Create a filter by changing the values in <span className='highlight'>getPropValue</span>
+          Create a filter by changing the values in <span className='highlight'>getPropValue.</span>
         </li>
       </ul>
       <div className='btn-box'>
@@ -103,6 +102,9 @@ function Filter({
         }}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
+        }}
+        onSelect={(element,item) => {
+          console.log(element,item)
         }}
       />
 

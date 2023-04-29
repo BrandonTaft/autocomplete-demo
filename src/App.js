@@ -9,11 +9,13 @@ import Dynamic from './Dynamic';
 import Order from './Order';
 import Style from './Style';
 import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 function App() {
+  const [response, setResponse] = useState();
   const [showPopUp, setShowPopUp] = useState(false);
   const [codeString, setCodeString] = useState("");
   const [open, setOpen] = useState(false);
@@ -25,19 +27,35 @@ function App() {
   const [filter, setFilter] = useState(true)
   const [show, setShow] = useState(true);
   const [user, setUser] = useState();
+  const [number, setNumber] = useState();
   const [card, setCard] = useState([]);
   const [display, setDisplay] = useState([]);
   const [numberArray, setNumberArray] = useState([])
 
   useEffect(() => {
+    const requestAPI = async () => {
+      try {
+        const res = await axios.get("https://dummyapi.io/data/v1/user?limit=100", {
+          headers: {
+            'app-id': '6430b84d15c85b6800a8f933'
+          },
+          params: {}
+        });
+        setResponse(res.data.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    requestAPI()
+
     setNumberArray([...Array(52).keys()])
     const cards = new Array(52);
     for (let i = 0; i < cards.length; i++) {
       cards[i] = i;
     }
 
-    const values = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');
-    const suits = '♠︎ ♥︎ ♣︎ ♦︎'.split(' ');
+    const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    const suits = ['♠︎', '♥︎', '♣︎', '♦︎'];
 
     const getProperties = (i) => {
       const color = i / 13 | 0;
@@ -45,7 +63,6 @@ function App() {
       const value = values[i % 13];
       return { suit, value, color };
     };
-
     setDisplay(cards.map(getProperties))
   }, [])
 
@@ -53,7 +70,7 @@ function App() {
     <>
       {showPopUp ?
         <div className='popup'>
-          <span className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>Close</span>
+          <span className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>CLOSE</span>
           <SyntaxHighlighter language="jsx" style={dracula} >
             {codeString}
           </SyntaxHighlighter>
@@ -69,7 +86,7 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
             : null
           }
-          {user && (open || openFilter || openDynamic || openOrder) ?
+          {user && (open || openFilter || openDynamic || openOrder ) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -81,7 +98,7 @@ function App() {
               </div>
             </>
             : null}
-          {card && (openCard || openDynamic || openStyle) && show ?
+          {card && (openDynamic || openStyle) && show ?
             <>
               <div className='preview-display'>
                 <div className='card' style={{ color: card.color % 2 === 0 ? 'black' : 'red' }}>
@@ -91,40 +108,26 @@ function App() {
                   </div>
                   <span className='middle-card'>{card.value}</span>
                   <div className='bottom-right'>
-                  <span >{card.value}</span>
-                  <span className='suit-top'>{card.suit}</span>
-                  
+                    <span >{card.value}</span>
+                    <span className='suit-top'>{card.suit}</span>
+
                   </div>
                 </div>
               </div>
             </>
             : null}
+            {number && openCard && show ?
+            <>
+              <div className='preview-display'>
+                <div className='card' style={{ color: 'black' }}>
+                  <span className='middle-card'>{number}</span>
+                </div>
+              </div>
+            </>
+            : null}
+
 
         </section>
-        <Preview
-          setUser={setUser}
-          showPopUp={showPopUp}
-          setShowPopUp={setShowPopUp}
-          setCodeString={setCodeString}
-          openDropDown={open}
-          setOpenDropDown={setOpen}
-          setOpenFilterDropDown={setOpenFilter}
-          setOpenAnotherDropDown={setOpenDynamic}
-          setOpenCardDropDown={setOpenCard}
-          setOpenOrderDropDown={setOpenOrder}
-          setOpenStyle={setOpenStyle}
-        />
-        <Filter
-          filter={filter}
-          setFilter={setFilter}
-          setAnotherUser={setUser}
-          showPopUp={showPopUp}
-          setShowPopUp={setShowPopUp}
-          setCodeString={setCodeString}
-          setOpenDropDown={setOpen}
-          openFilterDropDown={openFilter}
-          setOpenFilterDropDown={setOpenFilter}
-        />
         <Dynamic
           setAnotherUser={setUser}
           setShow={setShow}
@@ -138,6 +141,40 @@ function App() {
           setOpenAnotherDropDown={setOpenDynamic}
           numberArray={numberArray}
         />
+        <Filter
+          filter={filter}
+          setFilter={setFilter}
+          setAnotherUser={setUser}
+          showPopUp={showPopUp}
+          setShowPopUp={setShowPopUp}
+          setCodeString={setCodeString}
+          setOpenDropDown={setOpen}
+          openFilterDropDown={openFilter}
+          setOpenFilterDropDown={setOpenFilter}
+        />
+        <Numbers
+          setShowPopUp={setShowPopUp}
+          showPopUp={showPopUp}
+          setShow={setShow}
+          setCodeString={setCodeString}
+          setNumber={setNumber}
+          setOpenDropDown={setOpen}
+          openCardDropDown={openCard}
+          setOpenCardDropDown={setOpenCard}
+        />
+        <Preview
+          setUser={setUser}
+          showPopUp={showPopUp}
+          setShowPopUp={setShowPopUp}
+          setCodeString={setCodeString}
+          openDropDown={open}
+          setOpenDropDown={setOpen}
+          setOpenFilterDropDown={setOpenFilter}
+          setOpenAnotherDropDown={setOpenDynamic}
+          setOpenCardDropDown={setOpenCard}
+          setOpenOrderDropDown={setOpenOrder}
+          setOpenStyle={setOpenStyle}
+        />
         <Order
           setAnotherUser={setUser}
           showPopUp={showPopUp}
@@ -147,18 +184,7 @@ function App() {
           openOrderDropDown={openOrder}
           setOpenOrderDropDown={setOpenOrder}
         />
-        <Numbers
-          setShowPopUp={setShowPopUp}
-          showPopUp={showPopUp}
-          setShow={setShow}
-          setCodeString={setCodeString}
-          setCard={setCard}
-          display={display}
-          numberArray={numberArray}
-          setOpenDropDown={setOpen}
-          openCardDropDown={openCard}
-          setOpenCardDropDown={setOpenCard}
-        />
+        
         <Style
           setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}

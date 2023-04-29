@@ -33,7 +33,6 @@ function Style({
   display: inline-block;
 }
 .autocomplete-input {
-  background-color: #181c238a;
   box-shadow: black 3px 3px 6px;
 }
 .dropdown-container {
@@ -47,8 +46,7 @@ function Style({
           setOpenDropDown(true)
         }}}
       highlightedItemStyle={{
-        backgroundColor:"#76d8f9",
-        fontSize:"inherit"
+        backgroundColor:"#76d8f9"
       }}
       handleHighlightedItem={(element, item) => {
         highlightedElement.style.fontSize='2em'
@@ -60,10 +58,9 @@ function Style({
       <span className='green title'>Style The Component</span>
       <ul className='description-container'>
         <li className='description'>Style can be added using existing <span className='highlight'>class names</span> or by passing in an <span className='highlight'>Object Variable</span> for each element's style prop.</li>
-        <li className='description'>The <span className='highlight'>highlighted element</span> can also be styled using the <span className='highlight'>HTMLelement</span> passed in the <span className='highlight'>handleHighlightedItem</span> function</li>
+        <li className='description'>The <span className='highlight'>highlighted element</span> can also be styled using the <span className='highlight'>HTMLelement</span> passed in the <span className='highlight'>handleHighlightedItem</span> function.</li>
         <li className='description'>The input element's attributes can be set using <span className='highlight'>inputProps</span>.</li>
-        <li className='description'>Some Event handlers such as onClick can be used</li>
-        <li className='description'>onClick, onChange, onKeyDown, onFocus cannot be overridden</li>
+        <li className='description'>Some Event handlers can be used in <span className='highlight'>inputProps</span>.</li>
       </ul>
       <div className='btn-box'>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
