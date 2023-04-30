@@ -73,10 +73,12 @@ function Preview({
     return (
         <>
             <section className='preview'>
-                <span className='green title'>Toggle Open / Close</span>
+                <span className='title'>Toggle Open / Close</span>
+                <span className='top horizontal-bar'></span>
                 <ul className='description-container'>
-                <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown.</li>
-                <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a set function to update state.</li>
+                    <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown.</li>
+                    <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a set function to update the state that controls the <span className='highlight'>isOpen</span> prop.</li>
+                    <li className='description'>Use <span className='highlight'>disableOutsideClick</span> so the dropdown only closes when <span className='highlight'>isOpen</span> is set to false.</li>
                 </ul>
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
@@ -94,9 +96,9 @@ function Preview({
                     handleHighlightedItem={(element, item) => {
                         setUser(item)
                     }}
-                    onSelect={(element,item) => {
-                        console.log(element,item)
-                      }}
+                    onSelect={(element, item) => {
+                        console.log(element, item)
+                    }}
                 />
             </section>
         </>

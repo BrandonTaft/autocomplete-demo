@@ -78,7 +78,7 @@ function App() {
         : null
       }
       <div className='header'>
-        <h1> DEMO </h1>
+        <h1 className='green'>AUTOCOMPLETE DEMO</h1>
       </div>
       <div className='App-content'>
         <section className='preview-section'>
@@ -86,7 +86,7 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
             : null
           }
-          {user && (open || openFilter || openDynamic || openOrder ) ?
+          {user && (open || openFilter || openDynamic || openOrder) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -116,7 +116,7 @@ function App() {
               </div>
             </>
             : null}
-            {number && openCard && show ?
+          {number && openCard && show ?
             <>
               <div className='preview-display'>
                 <div className='card' style={{ color: 'black' }}>
@@ -129,6 +129,7 @@ function App() {
 
         </section>
         <Dynamic
+          response={response}
           setAnotherUser={setUser}
           setShow={setShow}
           setCard={setCard}
@@ -184,7 +185,7 @@ function App() {
           openOrderDropDown={openOrder}
           setOpenOrderDropDown={setOpenOrder}
         />
-        
+
         <Style
           setShowPopUp={setShowPopUp}
           showPopUp={showPopUp}

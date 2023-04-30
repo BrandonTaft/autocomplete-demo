@@ -8,8 +8,12 @@ body {
 }
 
 h1 {
-  margin: .5em .5em 1em;
-  text-decoration: underline;
+  margin: .5em .5em .1em;
+}
+
+i {
+  color: #76d8f9;
+  font-size: calc(10px + 1vmin);
 }
 
 .dropdown-container::-webkit-scrollbar {
@@ -39,19 +43,38 @@ h1 {
 .btn-box {
   display: flex;
   width: fit-content;
-  margin: 10px auto;
+  margin: 15px auto;
+
 }
 
 button {
-  width: 75px;
-  height: 33px;
+  width: 80px;
+  height: 30px;
   margin: 5px 10px 0px;
   background-color: transparent;
   border: ridge 3px;
   border-radius: 20px;
   color: white;
-  padding: 2px;
   cursor: pointer;
+  padding: 2px;
+}
+
+.horizontal-bar {
+  border: ridge 4px;
+  border-radius: 20px;
+  width: 60%;
+  height: 4px;
+  margin: 0px auto 5px;
+}
+
+.top.horizontal-bar {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border-color: #76d8f9;
+}
+
+.header {
+  margin-bottom: 4em;
 }
 
 /********** APP CONTENT **********/
@@ -65,8 +88,8 @@ button {
 section {
   display: flex;
   flex-direction: column;
-  height: 400px;
-  margin-bottom: 7em;
+  height: 500px;
+  margin-bottom: 4em;
   width: 90%;
 }
 
@@ -75,11 +98,15 @@ section {
 }
 
 .preview {
-  margin-bottom: 8em;
+  height: 600px;
 }
 
 .numbers {
-  height: 550px;
+  height: 640px;
+}
+
+.order {
+  height: 600px;
 }
 
 .style {
@@ -87,8 +114,7 @@ section {
 }
 
 .title {
-  text-decoration: underline;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(12px + 2vmin);
   margin-bottom: .25em;
 }
 
@@ -123,7 +149,7 @@ section {
   position: relative;
   left: 8px;
   overflow-y: auto;
-  max-height: 244px;
+  max-height: 220px;
   width: 235px;
   margin: 0 auto;
 }
@@ -299,12 +325,12 @@ pre {
 
   section {
     width: 50%;
-    height: 700px;
+    height: 800px;
     margin-bottom: 4em;
   }
 
   .numbers {
-    height: 800px;
+    height: 900px;
    }
 
   .style {
@@ -322,19 +348,24 @@ pre {
   }
 
   .dropdown-container {
-    max-height: 320px;
+    max-height: 300px;
+  }
+
+  .order {
+    height: 850px;
   }
 
   /*********** PREVIEW ***********/
   .preview {
     margin-bottom: 5em;
+    height: 850px;
   }
 
   .preview-section {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 25%;
+    top: 30%;
     right: 5%;
     border: ridge 6px;
     border-radius: 20px;
@@ -355,21 +386,13 @@ pre {
     text-overflow: ellipsis;
   }
 
-  .horizontal-bar {
-    border: ridge 4px;
-    border-radius: 20px;
-    width: 60%;
-    height: 4px;
-    margin: 0px auto 5px;
-  }
-
   .App-logo {
     z-index: 1;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     pointer-events: none;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
+  /* @media (prefers-reduced-motion: no-preference) {
     .App-logo {
       animation: App-logo-spin infinite 20s linear;
     }
@@ -383,7 +406,7 @@ pre {
     to {
       transform: rotate(360deg);
     }
-  }
+  } */
 
   
   .order {
@@ -434,9 +457,9 @@ pre {
 @media only screen and (min-width: 1020px) {
   
 
-  .title {
+  /* .title {
     font-size: calc(6px + 2vmin);
-  }
+  } */
 
   .preview-section {
     display: flex;
@@ -450,9 +473,9 @@ pre {
     width: 25%;
   }
 
-  .numbers {
-    height: 900px;
-   }
+  .order {
+    margin-bottom: 6em;
+  }
 
   button {
     width: fit-content;
@@ -464,14 +487,13 @@ pre {
     width: 280px;
   }
 
-  
-
 }
 
 
 @media only screen and (min-width: 1420px) {
-  
-
+  section {
+    height: 640px;
+  }
   .top-left {
     right: 75%;
     font-size: 3em;

@@ -56,6 +56,7 @@ function Style({
   return (
     <section className='style'>
       <span className='green title'>Style The Component</span>
+      <span className='top horizontal-bar'></span>
       <ul className='description-container'>
         <li className='description'>Style can be added using existing <span className='highlight'>class names</span> or by passing in an <span className='highlight'>Object Variable</span> for each element's style prop.</li>
         <li className='description'>The <span className='highlight'>highlighted element</span> can also be styled using the <span className='highlight'>HTMLelement</span> passed in the <span className='highlight'>handleHighlightedItem</span> function.</li>

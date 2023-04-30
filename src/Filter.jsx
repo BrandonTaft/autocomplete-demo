@@ -69,9 +69,10 @@ function Filter({
 
   return (
     <section>
-      <span className='green title'>
+      <span className='title'>
         Toggle Property Values
       </span>
+      <span className='top horizontal-bar'></span>
       <ul className='description-container'>
         <li className='description'>
           Create a filter by changing the values in <span className='highlight'>getPropValue.</span>
@@ -103,8 +104,8 @@ function Filter({
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setAnotherUser(highlightedItem)
         }}
-        onSelect={(element,item) => {
-          console.log(element,item)
+        onSelect={(element, item) => {
+          console.log(element, item)
         }}
       />
 

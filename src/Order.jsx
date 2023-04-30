@@ -78,6 +78,7 @@ function Order({
   return (
     <section className='order'>
       <span className='green title'>Customize Behavior</span>
+      <span className='top horizontal-bar'></span>
       <ul className='description-container'>
       <li className='description'>If <span className='highlight'>showAll</span> is not set to <span className='highlight'>true</span>, text must be entered matching a stored value for the dropdown to open.</li>
         <li className='description'>Change the order of the values shown in the drop down by changing the value in <span className='highlight'>descending</span> prop.</li>
@@ -85,10 +86,9 @@ function Order({
       <div className='btn-box'>
       <button className='ignore btn' onClick={toggleShowAll}>{showList ? 'Dont Show' : 'Show All'}</button>
         <button className='ignore btn' onClick={toggleSort}>Sort By</button>
-        <div className='descending'>{sort ? 'Descending' : 'Ascending'}</div>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
-
+      <div className='descending'>{sort ? 'Descending' : 'Ascending'}</div>
       <AutoComplete
         list={response}
         getPropValue={

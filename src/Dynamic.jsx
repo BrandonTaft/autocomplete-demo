@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
-import axios from 'axios';
 import './App.css';
 
 function Dynamic({
+    response,
     setCard,
     setShow,
     display,
@@ -16,7 +16,7 @@ function Dynamic({
     numberArray,
     setOpenDropDown
 }) {
-    const [response, setResponse] = useState();
+
     const [originalList, setOriginalList] = useState(true)
 
     const handleCode = (() => {
@@ -41,43 +41,23 @@ function Dynamic({
       }}
 />`
 
-
-
-    useEffect(() => {
-        const requestAPI = async () => {
-            try {
-                const res = await axios.get("https://dummyapi.io/data/v1/user?limit=100", {
-                    headers: {
-                        'app-id': '6430b84d15c85b6800a8f933'
-                    },
-                    params: {}
-                });
-                setResponse(res.data.data)
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        requestAPI()
-    }, [])
-
     useEffect(() => {
         if (openAnotherDropDown) {
             setOpenDropDown(false)
-        }
-    }, [openAnotherDropDown, setOpenDropDown])
+        };
 
-    useEffect(() => {
         if (originalList) {
             setShow(false)
         } else {
             setShow(true)
-        }
+        };
     }, [openAnotherDropDown, setOpenDropDown, originalList, setShow])
 
 
     return (
         <section>
-            <span className='green title'>Toggle List</span>
+            <span className='title dynamic'>Toggle List</span>
+            <span className='top horizontal-bar'></span>
             <ul className='description-container'>
                 <li className='description'>Toggle the array passed into the <span className='highlight'>list</span> prop.</li>
             </ul>
@@ -104,9 +84,9 @@ function Dynamic({
                         setAnotherUser(highlightedItem)
                     }
                 }}
-                onSelect={(element,item) => {
-                    console.log(element,item)
-                  }}
+                onSelect={(element, item) => {
+                    console.log(element, item)
+                }}
             />
 
 
