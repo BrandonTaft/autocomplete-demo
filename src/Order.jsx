@@ -77,7 +77,7 @@ function Order({
 
   return (
     <section className='order'>
-      <span className='green title'>Customize Behavior</span>
+      <span className='green title'>Customize</span>
       <span className='top horizontal-bar'></span>
       <ul className='description-container'>
       <li className='description'>If <span className='highlight'>showAll</span> is not set to <span className='highlight'>true</span>, text must be entered matching a stored value for the dropdown to open.</li>
