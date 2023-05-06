@@ -7,6 +7,7 @@ import Numbers from './Numbers';
 import Filter from './Filter';
 import Dynamic from './Dynamic';
 import Order from './Order';
+import Submit from './Submit';
 import Style from './Style';
 import logo from './logo.svg';
 import axios from 'axios';
@@ -23,9 +24,11 @@ function App() {
   const [openOrder, setOpenOrder] = useState(false);
   const [openDynamic, setOpenDynamic] = useState(false);
   const [openCard, setOpenCard] = useState(false);
+  const [openSubmit, setOpenSubmit] = useState(false);
   const [openStyle, setOpenStyle] = useState(false);
   const [filter, setFilter] = useState(true)
   const [show, setShow] = useState(true);
+  const [showSubmit, setShowSubmit] = useState(false);
   const [user, setUser] = useState();
   const [number, setNumber] = useState();
   const [card, setCard] = useState([]);
@@ -82,11 +85,11 @@ function App() {
       </div>
       <div className='App-content'>
         <section className='preview-section'>
-          {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle ?
+          {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle && !showSubmit ?
             <img src={logo} className="App-logo" alt="logo" />
             : null
           }
-          {user && (open || openFilter || openDynamic || openOrder) ?
+          {user && (open || openFilter || openDynamic || openOrder || showSubmit) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -141,8 +144,10 @@ function App() {
           openAnotherDropDown={openDynamic}
           setOpenAnotherDropDown={setOpenDynamic}
           numberArray={numberArray}
+          setShowSubmit={setShowSubmit}
         />
         <Filter
+          response={response}
           filter={filter}
           setFilter={setFilter}
           setAnotherUser={setUser}
@@ -152,18 +157,10 @@ function App() {
           setOpenDropDown={setOpen}
           openFilterDropDown={openFilter}
           setOpenFilterDropDown={setOpenFilter}
-        />
-        <Numbers
-          setShowPopUp={setShowPopUp}
-          showPopUp={showPopUp}
-          setShow={setShow}
-          setCodeString={setCodeString}
-          setNumber={setNumber}
-          setOpenDropDown={setOpen}
-          openCardDropDown={openCard}
-          setOpenCardDropDown={setOpenCard}
+          setShowSubmit={setShowSubmit}
         />
         <Preview
+          response={response}
           setUser={setUser}
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
@@ -174,9 +171,34 @@ function App() {
           setOpenAnotherDropDown={setOpenDynamic}
           setOpenCardDropDown={setOpenCard}
           setOpenOrderDropDown={setOpenOrder}
+          setOpenSubmitDropDown={setOpenSubmit}
           setOpenStyle={setOpenStyle}
+          setShowSubmit={setShowSubmit}
+        />
+        <Submit
+          response={response}
+          setAnotherUser={setUser}
+          showPopUp={showPopUp}
+          setShowPopUp={setShowPopUp}
+          setCodeString={setCodeString}
+          setOpenDropDown={setOpen}
+          openSubmitDropDown={openSubmit}
+          setOpenSubmitDropDown={setOpenSubmit}
+          setShowSubmit={setShowSubmit}
+        />
+        <Numbers
+          setShowPopUp={setShowPopUp}
+          showPopUp={showPopUp}
+          setShow={setShow}
+          setCodeString={setCodeString}
+          setNumber={setNumber}
+          setOpenDropDown={setOpen}
+          openCardDropDown={openCard}
+          setOpenCardDropDown={setOpenCard}
+          setShowSubmit={setShowSubmit}
         />
         <Order
+          response={response}
           setAnotherUser={setUser}
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
@@ -184,6 +206,7 @@ function App() {
           setOpenDropDown={setOpen}
           openOrderDropDown={openOrder}
           setOpenOrderDropDown={setOpenOrder}
+          setShowSubmit={setShowSubmit}
         />
 
         <Style
@@ -197,6 +220,7 @@ function App() {
           setOpen={setOpen}
           openStyle={openStyle}
           setOpenStyle={setOpenStyle}
+          setShowSubmit={setShowSubmit}
         />
       </div>
     </>

@@ -4,16 +4,17 @@ import axios from 'axios';
 import './App.css';
 
 function Order({
+  response,
   showPopUp,
   setShowPopUp,
   setCodeString,
   setAnotherUser,
   openOrderDropDown,
   setOpenOrderDropDown,
-  setOpenDropDown
+  setOpenDropDown,
+  setShowSubmit
 }) {
 
-  const [response, setResponse] = useState();
   const [sort, setSort] = useState(false);
   const [showList, setShowList] = useState(true);
 
@@ -50,26 +51,8 @@ function Order({
     }}
 />
 `
-
-
   useEffect(() => {
-    const requestAPI = async () => {
-      try {
-        const res = await axios.get("https://dummyapi.io/data/v1/user?limit=100", {
-          headers: {
-            'app-id': '6430b84d15c85b6800a8f933'
-          },
-          params: {}
-        });
-        setResponse(res.data.data)
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    requestAPI()
-  }, [sort])
-
-  useEffect(() => {
+    setShowSubmit(false)
     if (openOrderDropDown) {
       setOpenDropDown(false)
     }

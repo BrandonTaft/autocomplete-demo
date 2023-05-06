@@ -12,10 +12,12 @@ function Style({
   setCodeString,
   setOpen,
   openStyle,
-  setOpenStyle
+  setOpenStyle,
+  setShowSubmit
 }) {
 
   useEffect(() => {
+    setShowSubmit(false)
     if (openStyle) {
       setShow(true)
       setOpen(false)

@@ -5,6 +5,7 @@ import axios from 'axios';
 import './App.css';
 
 function Preview({
+    response,
     showPopUp,
     setShowPopUp,
     setCodeString,
@@ -15,28 +16,14 @@ function Preview({
     setOpenAnotherDropDown,
     setOpenFilterDropDown,
     setOpenOrderDropDown,
-    setOpenStyle
+    setOpenSubmitDropDown,
+    setOpenStyle,
+    setShowSubmit
 }) {
 
-    const [response, setResponse] = useState();
-
-
     useEffect(() => {
-        const requestAPI = async () => {
-            try {
-                const res = await axios.get("https://dummyapi.io/data/v1/user?limit=100", {
-                    headers: {
-                        'app-id': '6430b84d15c85b6800a8f933'
-                    },
-                    params: {}
-                });
-                setResponse(res.data.data)
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        requestAPI()
-    }, []);
+        setShowSubmit(false)
+    },[openDropDown]);
 
     const toggleDropDown = (() => {
         setOpenDropDown(!openDropDown)
@@ -44,6 +31,7 @@ function Preview({
         setOpenAnotherDropDown(false)
         setOpenFilterDropDown(false)
         setOpenOrderDropDown(false)
+        setOpenSubmitDropDown(false)
         setOpenStyle(false)
     })
 

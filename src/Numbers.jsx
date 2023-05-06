@@ -10,12 +10,14 @@ function Numbers({
   setCodeString,
   setOpenDropDown,
   openCardDropDown,
-  setOpenCardDropDown
+  setOpenCardDropDown,
+  setShowSubmit
 }) {
 
   const [newList, setNewList] = useState();
 
   useEffect(() => {
+    setShowSubmit(false)
     if (openCardDropDown) {
       setShow(true)
       setOpenDropDown(false)

@@ -14,7 +14,8 @@ function Dynamic({
     openAnotherDropDown,
     setOpenAnotherDropDown,
     numberArray,
-    setOpenDropDown
+    setOpenDropDown,
+    setShowSubmit
 }) {
 
     const [originalList, setOriginalList] = useState(true)
@@ -42,6 +43,7 @@ function Dynamic({
 />`
 
     useEffect(() => {
+        setShowSubmit(false)
         if (openAnotherDropDown) {
             setOpenDropDown(false)
         };

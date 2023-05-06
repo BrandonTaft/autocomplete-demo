@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 function Filter({
+  response,
   showPopUp,
   setShowPopUp,
   setCodeString,
@@ -12,10 +13,9 @@ function Filter({
   setFilter,
   openFilterDropDown,
   setOpenFilterDropDown,
-  setOpenDropDown
+  setOpenDropDown,
+  setShowSubmit
 }) {
-
-  const [response, setResponse] = useState();
 
   const toggleFilter = (() => {
     setFilter(filter => !filter)
@@ -43,25 +43,8 @@ function Filter({
 />
   `
 
-
   useEffect(() => {
-    const requestAPI = async () => {
-      try {
-        const res = await axios.get("https://dummyapi.io/data/v1/user?limit=100", {
-          headers: {
-            'app-id': '6430b84d15c85b6800a8f933'
-          },
-          params: {}
-        });
-        setResponse(res.data.data)
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    requestAPI()
-  }, [filter])
-
-  useEffect(() => {
+    setShowSubmit(false)
     if (openFilterDropDown) {
       setOpenDropDown(false)
     }
