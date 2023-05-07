@@ -54,6 +54,7 @@ function Preview({
      updateIsOpen={(update) => {
          setOpen(update)
      }}
+ />
      `;
 
     return (
