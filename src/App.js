@@ -11,6 +11,7 @@ import Submit from './Submit';
 import Style from './Style';
 import yellowLogo from './logo.png';
 import logo from './logo.svg';
+import purpleLogo from './logo-purple.png';
 import axios from 'axios';
 import './App.css';
 
@@ -75,6 +76,8 @@ function App() {
     if(theme === "dark") {
       setTheme('light')
     } else if (theme === 'light') {
+      setTheme('lightest')
+    } else if (theme === 'lightest') {
       setTheme('dark')
     }
   }
@@ -98,7 +101,7 @@ function App() {
         <section className='preview-section'>
           {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle && !showSubmit ?
             <img 
-              src={ theme === 'dark' ? yellowLogo : logo }
+              src={ theme === 'dark' ? yellowLogo : theme === 'lightest' ? purpleLogo : logo }
               className="App-logo"
               alt="logo"
               width={ theme === 'dark' ? 200 : null}

@@ -47,7 +47,7 @@ const [submit, setSubmit] = useState(false);
 
     return (
         <section className='style'>
-            <span className='title dynamic'>Submit</span>
+            <span className='title dynamic'>Submit Button</span>
             <span className='top horizontal-bar'></span>
             <ul className='description-container'>
                 <li className='description'>Enable a submit button by using the <span className='highlight'>submit</span> prop.</li>
