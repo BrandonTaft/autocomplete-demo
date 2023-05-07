@@ -534,7 +534,7 @@ pre {
     display: flex;
     flex-direction: column;
     position: fixed;
-    right: 14%;
+    right: 13%;
     border: ridge 6px;
     border-radius: 20px;
     padding-bottom: 1em;
