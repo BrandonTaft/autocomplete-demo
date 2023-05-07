@@ -23,7 +23,9 @@ function Submit({
     const codeString = `
 const [submit, setSubmit] = useState(false);
 
-<button className='ignore btn' onClick={() => {setSubmit(true)}}>Submit</button>
+<button onClick={() => {setSubmit(true)}}>
+    Submit
+</button>
 <AutoComplete
     showAll={true}
     list={array}

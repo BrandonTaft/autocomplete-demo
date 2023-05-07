@@ -53,7 +53,7 @@ function Dynamic({
         } else {
             setShow(true)
         };
-    }, [openAnotherDropDown, setOpenDropDown, originalList, setShow])
+    }, [openAnotherDropDown, setOpenDropDown, originalList, setShow, setShowSubmit])
 
 
     return (

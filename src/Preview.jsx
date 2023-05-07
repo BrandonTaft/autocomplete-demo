@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
-import axios from 'axios';
-
 import './App.css';
 
 function Preview({
@@ -23,7 +21,7 @@ function Preview({
 
     useEffect(() => {
         setShowSubmit(false)
-    },[openDropDown]);
+    },[openDropDown, setShowSubmit]);
 
     const toggleDropDown = (() => {
         setOpenDropDown(!openDropDown)

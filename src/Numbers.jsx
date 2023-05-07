@@ -25,7 +25,7 @@ function Numbers({
       setShow(false)
     }
 
-  }, [openCardDropDown, setOpenDropDown, setShow])
+  }, [openCardDropDown, setOpenDropDown, setShow, setShowSubmit])
 
   useEffect(() => {
     setNewList([2, 4, 6, 8, 10, 15, 20, 30, 40, 50])

@@ -24,7 +24,7 @@ function Style({
     } else {
       setShow(false)
     }
-  }, [openStyle, setOpen, setShow])
+  }, [openStyle, setOpen, setShow, setShowSubmit])
 
   const handleCode = (() => {
     setShowPopUp(!showPopUp)

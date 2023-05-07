@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
-import axios from 'axios';
 import './App.css';
 
 function Filter({
@@ -48,7 +47,7 @@ function Filter({
     if (openFilterDropDown) {
       setOpenDropDown(false)
     }
-  }, [openFilterDropDown, setOpenDropDown])
+  }, [openFilterDropDown, setOpenDropDown, setShowSubmit])
 
   return (
     <section>

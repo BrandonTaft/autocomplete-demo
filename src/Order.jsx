@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
-import axios from 'axios';
 import './App.css';
 
 function Order({
@@ -56,7 +55,7 @@ function Order({
     if (openOrderDropDown) {
       setOpenDropDown(false)
     }
-  }, [openOrderDropDown, setOpenDropDown])
+  }, [openOrderDropDown, setOpenDropDown, setShowSubmit])
 
   return (
     <section className='order'>
