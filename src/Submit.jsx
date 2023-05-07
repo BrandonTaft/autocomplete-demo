@@ -15,31 +15,25 @@ function Submit({
 }) {
     const [submit, setSubmit] = useState(false);
 
-    const toggleSubmit = (() => {
-        setSubmit(true)
-    })
-
     const handleCode = (() => {
         setShowPopUp(!showPopUp)
         setCodeString(codeString)
     })
 
     const codeString = `
+const [submit, setSubmit] = useState(false);
+
+<button className='ignore btn' onClick={() => {setSubmit(true)}}>Submit</button>
 <AutoComplete
     showAll={true}
-    list={originalList ? response : numberArray}
-    getPropValue={(item) => {item.firstName}}
-    handleHighlightedItem={(element, item) => {
-        if (typeof item === 'number') {
-            setCard(cards[item])
-        } else {
-            setUser(item)
-        }
-    }}
-    onSelect={(element,item) => {
-        console.log(element,item)
-      }}
-/>`
+    list={array}
+    submit={submit}
+    updateSubmit={setSubmit}
+    handleSubmit={(item) => {
+        setUser(item)
+    }}   
+/>
+`
 
     useEffect(() => {
         if (openSubmitDropDown) {
@@ -61,7 +55,7 @@ function Submit({
                 <li className='description'>The <span className='highlight'>updateSubmit</span> prop is used to reset the state passed in the <span className='highlight'>submit</span> prop.</li>
             </ul>
             <div className='btn-box'>
-                <button className='ignore btn' onClick={toggleSubmit}>Submit</button>
+                <button className='ignore btn' onClick={() => {setSubmit(true)}}>Submit</button>
                 <button className='ignore btn' onClick={handleCode}>See Code</button>
             </div>
             <AutoComplete
