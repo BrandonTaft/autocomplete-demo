@@ -15,6 +15,7 @@ function Numbers({
 }) {
 
   const [newList, setNewList] = useState();
+  const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
     setShowSubmit(false)
@@ -46,11 +47,10 @@ const [newList, setNewList] = useState();
     list={newList}
     showAll={true}
     highlightFirstItem={false}
+    submit={submit}
+      updateSubmit={setSubmit}
     handleNewValue={(value,list) => {
       setNewList(prevState => [...prevState, Number(value)])
-    }}
-    onSelect={(element,item) => {
-      console.log(element,item)
     }}
 />
 
@@ -66,20 +66,23 @@ const [newList, setNewList] = useState();
         <li className='description'>If the <span className='highlight'>handleNewValue</span> function is not passed in, the <span className='highlight'>onSelect</span> or <span className='highlight'>handleSubmit</span> function will still run.</li>
       </ul>
       <div className='btn-box'>
+        <button className='ignore btn' onClick={() => { setSubmit(true) }}>Submit</button>
         <button className='ignore btn' onClick={handleCode}>See Code</button>
       </div>
-      <i>Type in a number that is not listed - then press enter</i>
+      <i>Type in a number that is not listed - then click submit or press enter</i>
       <AutoComplete
         list={newList}
         isOpen={openCardDropDown}
         updateIsOpen={(openMe) => {
           setOpenCardDropDown(openMe)
         }}
-        highlightFirstItem={false}
+        
         showAll={true}
         handleHighlightedItem={(highlightedElement, highlightedItem) => {
           setNumber(highlightedItem)
         }}
+        submit={submit}
+        updateSubmit={setSubmit}
         handleNewValue={(value, list) => {
           setNewList(prevState => [...prevState, Number(value)])
         }}

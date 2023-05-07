@@ -9,7 +9,8 @@ import Dynamic from './Dynamic';
 import Order from './Order';
 import Submit from './Submit';
 import Style from './Style';
-import logo from './logo.png';
+import yellowLogo from './logo.png';
+import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 
@@ -33,7 +34,8 @@ function App() {
   const [number, setNumber] = useState();
   const [card, setCard] = useState([]);
   const [display, setDisplay] = useState([]);
-  const [numberArray, setNumberArray] = useState([])
+  const [numberArray, setNumberArray] = useState([]);
+  const [theme, setTheme] = useState("dark")
 
   useEffect(() => {
     const requestAPI = async () => {
@@ -69,8 +71,16 @@ function App() {
     setDisplay(cards.map(getProperties))
   }, [])
 
+  const toggleTheme = () => {
+    if(theme === "dark") {
+      setTheme('light')
+    } else if (theme === 'light') {
+      setTheme('dark')
+    }
+  }
+
   return (
-    <>
+    <div className={theme}>
       {showPopUp ?
         <div className='popup'>
           <span className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>CLOSE</span>
@@ -82,11 +92,18 @@ function App() {
       }
       <div className='header'>
         <h1 className='green'>AUTOCOMPLETE DEMO</h1>
+        <button className='ignore btn switch' onClick={toggleTheme}>{theme.toUpperCase()}</button>
       </div>
       <div className='App-content'>
         <section className='preview-section'>
           {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle && !showSubmit ?
-            <img src={logo} className="App-logo" alt="logo" width={200} height={200} />
+            <img 
+              src={ theme === 'dark' ? yellowLogo : logo }
+              className="App-logo"
+              alt="logo"
+              width={ theme === 'dark' ? 200 : null}
+              height={theme === 'dark' ? 200 : null}
+              />
             : null
           }
           {user && !openStyle && (open || openFilter || openDynamic || openOrder || showSubmit ) ?
@@ -223,7 +240,7 @@ function App() {
           setShowSubmit={setShowSubmit}
         />
       </div>
-    </>
+    </div>
   );
 }
 export default App;
