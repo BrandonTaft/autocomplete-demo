@@ -9,7 +9,7 @@ import Dynamic from './Dynamic';
 import Order from './Order';
 import Submit from './Submit';
 import Style from './Style';
-import logo from './logo.svg';
+import logo from './logo.png';
 import axios from 'axios';
 import './App.css';
 
@@ -86,10 +86,10 @@ function App() {
       <div className='App-content'>
         <section className='preview-section'>
           {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle && !showSubmit ?
-            <img src={logo} className="App-logo" alt="logo" />
+            <img src={logo} className="App-logo" alt="logo" width={200} height={200} />
             : null
           }
-          {user && (open || openFilter || openDynamic || openOrder || showSubmit) ?
+          {user && !openStyle && (open || openFilter || openDynamic || openOrder || showSubmit ) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -217,7 +217,7 @@ function App() {
           setCard={setCard}
           display={display}
           numberArray={numberArray}
-          setOpen={setOpen}
+          setOpenDropDown={setOpen}
           openStyle={openStyle}
           setOpenStyle={setOpenStyle}
           setShowSubmit={setShowSubmit}

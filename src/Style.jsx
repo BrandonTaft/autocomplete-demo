@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AutoComplete } from 'react-autocomplete-input-component';
 import './App.css';
 
@@ -10,21 +10,23 @@ function Style({
   setCard,
   display,
   setCodeString,
-  setOpen,
+  setOpenDropDown,
   openStyle,
   setOpenStyle,
   setShowSubmit
 }) {
 
+  const [placeHolder, setPlaceHolder] = useState("USE ME PLEASE!!!!!!!!")
+
   useEffect(() => {
     setShowSubmit(false)
     if (openStyle) {
       setShow(true)
-      setOpen(false)
+      setOpenDropDown(false)
     } else {
       setShow(false)
     }
-  }, [openStyle, setOpen, setShow, setShowSubmit])
+  }, [openStyle, setOpenDropDown , setShow, setShowSubmit])
 
   const handleCode = (() => {
     setShowPopUp(!showPopUp)
@@ -43,12 +45,13 @@ function Style({
 
   <Autocomplete 
       inputProps={{
-        placeholder: "search...",
-        onMouseOver: () => {
-          setOpenDropDown(true)
-        }}}
-      highlightedItemStyle={{
-        backgroundColor:"#76d8f9"
+        placeholder: placeHolder,
+        onMouseEnter: () => {
+          setPlaceHolder("HEYYYYY!!!!!!")
+        },
+        onMouseLeave: () => {
+          setPlaceHolder("BYEEEEE!!!!!!")
+        },
       }}
       handleHighlightedItem={(element, item) => {
         highlightedElement.style.fontSize='2em'
@@ -73,13 +76,15 @@ function Style({
         showAll={true}
         isOpen={openStyle}
         inputProps={{
-          placeholder: "search...",
-          onMouseOver: () => {
-            setOpenStyle(true)
+          placeholder: placeHolder,
+          onMouseEnter: () => {
+           setPlaceHolder("HEYYYYY!!!!!!")
           },
+          onMouseLeave: () => {
+            setPlaceHolder("BYEEEEE!!!!!!")
+           },
         }}
         highlightedItemStyle={{
-          backgroundColor: "#76d8f9",
           color: "blue",
           fontSize: "inherit"
         }}
