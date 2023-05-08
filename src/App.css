@@ -309,9 +309,9 @@ pre {
   left: 80%;
   color: white;
   font-size: .8em;
-  border: solid red 2px;
+  border: solid white 2px;
   border-radius: 22px;
-  padding: 3px 8px 3px;
+  padding: 1px 8px 2px;
   font-weight: 500;
 }
 

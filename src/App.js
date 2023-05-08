@@ -86,7 +86,7 @@ function App() {
     <div className={theme}>
       {showPopUp ?
         <div className='popup'>
-          <span className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>CLOSE</span>
+          <div className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>CLOSE</div>
           <SyntaxHighlighter language="jsx" style={dracula} >
             {codeString}
           </SyntaxHighlighter>
