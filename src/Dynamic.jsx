@@ -29,8 +29,8 @@ function Dynamic({
 <AutoComplete
     showAll={true}
     list={originalList ? response : numberArray}
-    getPropValue={(item) => {item.firstName}}
-    handleHighlightedItem={(element, item) => {
+    getDisplayValue={(item) => {item.firstName}}
+    handleHighlight={(item) => {
         if (typeof item === 'number') {
             setCard(cards[item])
         } else {
@@ -71,14 +71,14 @@ function Dynamic({
             <AutoComplete
                 showAll={true}
                 list={originalList ? response : numberArray}
-                getPropValue={
-                    originalList ? (item) => `${item.firstName} ${item.lastName}` : () => { }
+                getDisplayValue={
+                    originalList ? (list) => list.map((item) => `${item.firstName} ${item.lastName}`) : () => { }
                 }
-                isOpen={openAnotherDropDown}
-                updateIsOpen={(openMe) => {
+                open={openAnotherDropDown}
+                onDropDownChange={(openMe) => {
                     setOpenAnotherDropDown(openMe)
                 }}
-                handleHighlightedItem={(highlightedElement, highlightedItem) => {
+                handleHighlight={(highlightedElement, highlightedItem) => {
                     if (typeof highlightedItem === 'number') {
                         setAnotherUser()
                         setCard(display[highlightedItem])

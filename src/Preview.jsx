@@ -12,25 +12,19 @@ function Preview({
     setOpenDropDown,
     setOpenCardDropDown,
     setOpenAnotherDropDown,
-    setOpenFilterDropDown,
-    setOpenOrderDropDown,
     setOpenSubmitDropDown,
-    setOpenStyle,
     setShowSubmit
 }) {
 
     useEffect(() => {
         setShowSubmit(false)
-    },[openDropDown, setShowSubmit]);
+    }, [openDropDown, setShowSubmit]);
 
     const toggleDropDown = (() => {
         setOpenDropDown(!openDropDown)
         setOpenCardDropDown(false)
         setOpenAnotherDropDown(false)
-        setOpenFilterDropDown(false)
-        setOpenOrderDropDown(false)
         setOpenSubmitDropDown(false)
-        setOpenStyle(false)
     })
 
     const handleCode = (() => {
@@ -40,19 +34,19 @@ function Preview({
 
     const codeString = `
 
- const [open, setOpen] = useState(false);
+ const [openDropDown, setOpenDropDown] = useState(false);
  <button className='ignore' onClick={() => {
-     setOpen(!open)
+     setOpenDropDown(!openDropDown)
  }}/>
 
  <AutoComplete
      list={response}
-     getPropValue={(item) => item.firstName}
+     getDisplayValue={(list) => list.map((item) => item.name)}
      showAll={true}
      disableOutsideClick={true}
-     isOpen={open}
-     updateIsOpen={(update) => {
-         setOpen(update)
+     open={openDropDown}
+     onDropDownChange={(isOpen) => {
+        setOpenDropDown(isOpen)
      }}
  />
      `;
@@ -63,9 +57,8 @@ function Preview({
                 <span className='title'>Toggle Open / Close</span>
                 <span className='top horizontal-bar'></span>
                 <ul className='description-container'>
-                    <li className='description'>Use the <span className='highlight'>isOpen</span> prop to control the dropdown.</li>
-                    <li className='description'>Use <span className='highlight'>updateIsOpen</span> to pass in a set function to update the state that controls the <span className='highlight'>isOpen</span> prop.</li>
-                    <li className='description'>Use <span className='highlight'>disableOutsideClick</span> so the dropdown only closes when <span className='highlight'>isOpen</span> is set to false.</li>
+                    <li className='description'>Use the <span className='highlight'>open</span> prop to control the dropdown.</li>
+                    <li className='description'>The <span className='highlight'>onDropDownChange</span> function is invoked with the current state of the dropdown passed in each time the dropdown opens or closes.</li>
                 </ul>
                 <div className='btn-box'>
                     <button className='ignore btn' onClick={toggleDropDown} >{openDropDown === false ? 'OPEN' : 'CLOSE'}</button>
@@ -73,14 +66,16 @@ function Preview({
                 </div>
                 <AutoComplete
                     list={response}
-                    getPropValue={(listName) => listName.firstName}
+                    getDisplayValue={
+                        (list) => list.map((listName) => listName.firstName)
+                    }
                     showAll={true}
                     disableOutsideClick={true}
-                    isOpen={openDropDown}
-                    updateIsOpen={(update) => {
+                    open={openDropDown}
+                    onDropDownChange={(update) => {
                         setOpenDropDown(update)
                     }}
-                    handleHighlightedItem={(element, item) => {
+                    handleHighlight={(item) => {
                         setUser(item)
                     }}
                     onSelect={(element, item) => {

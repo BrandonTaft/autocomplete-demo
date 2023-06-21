@@ -4,11 +4,8 @@ import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
 import dracula from 'react-syntax-highlighter/dist/esm/styles/prism/dracula';
 import Preview from './Preview';
 import Numbers from './Numbers';
-import Filter from './Filter';
 import Dynamic from './Dynamic';
-import Order from './Order';
 import Submit from './Submit';
-import Style from './Style';
 import yellowLogo from './logo.png';
 import logo from './logo.svg';
 import purpleLogo from './logo-purple.png';
@@ -22,13 +19,9 @@ function App() {
   const [showPopUp, setShowPopUp] = useState(false);
   const [codeString, setCodeString] = useState("");
   const [open, setOpen] = useState(false);
-  const [openFilter, setOpenFilter] = useState(false);
-  const [openOrder, setOpenOrder] = useState(false);
   const [openDynamic, setOpenDynamic] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   const [openSubmit, setOpenSubmit] = useState(false);
-  const [openStyle, setOpenStyle] = useState(false);
-  const [filter, setFilter] = useState(true)
   const [show, setShow] = useState(true);
   const [showSubmit, setShowSubmit] = useState(false);
   const [user, setUser] = useState();
@@ -76,8 +69,6 @@ function App() {
     if(theme === "dark") {
       setTheme('light')
     } else if (theme === 'light') {
-      setTheme('lightest')
-    } else if (theme === 'lightest') {
       setTheme('dark')
     }
   }
@@ -99,7 +90,7 @@ function App() {
       </div>
       <div className='App-content'>
         <section className='preview-section'>
-          {!open && !openFilter && !openDynamic && !openCard && !openOrder && !openStyle && !showSubmit ?
+          {!open && !openDynamic && !openCard && !showSubmit ?
             <img 
               src={ theme === 'dark' ? yellowLogo : theme === 'lightest' ? purpleLogo : logo }
               className="App-logo"
@@ -109,7 +100,7 @@ function App() {
               />
             : null
           }
-          {user && !openStyle && (open || openFilter || openDynamic || openOrder || showSubmit ) ?
+          {user && (open || openDynamic  || showSubmit ) ?
             <>
               <img src={user.picture} alt="profile-pic" width={140} height={140} />
               <div className='horizontal-bar'></div>
@@ -121,7 +112,7 @@ function App() {
               </div>
             </>
             : null}
-          {card && (openDynamic || openStyle) && show ?
+          {card && (openDynamic) && show ?
             <>
               <div className='preview-display'>
                 <div className='card' style={{ color: card.color % 2 === 0 ? 'black' : 'red' }}>
@@ -166,19 +157,7 @@ function App() {
           numberArray={numberArray}
           setShowSubmit={setShowSubmit}
         />
-        <Filter
-          response={response}
-          filter={filter}
-          setFilter={setFilter}
-          setAnotherUser={setUser}
-          showPopUp={showPopUp}
-          setShowPopUp={setShowPopUp}
-          setCodeString={setCodeString}
-          setOpenDropDown={setOpen}
-          openFilterDropDown={openFilter}
-          setOpenFilterDropDown={setOpenFilter}
-          setShowSubmit={setShowSubmit}
-        />
+        
         <Preview
           response={response}
           setUser={setUser}
@@ -187,12 +166,9 @@ function App() {
           setCodeString={setCodeString}
           openDropDown={open}
           setOpenDropDown={setOpen}
-          setOpenFilterDropDown={setOpenFilter}
           setOpenAnotherDropDown={setOpenDynamic}
           setOpenCardDropDown={setOpenCard}
-          setOpenOrderDropDown={setOpenOrder}
           setOpenSubmitDropDown={setOpenSubmit}
-          setOpenStyle={setOpenStyle}
           setShowSubmit={setShowSubmit}
         />
         <Submit
@@ -217,31 +193,8 @@ function App() {
           setOpenCardDropDown={setOpenCard}
           setShowSubmit={setShowSubmit}
         />
-        <Order
-          response={response}
-          setAnotherUser={setUser}
-          showPopUp={showPopUp}
-          setShowPopUp={setShowPopUp}
-          setCodeString={setCodeString}
-          setOpenDropDown={setOpen}
-          openOrderDropDown={openOrder}
-          setOpenOrderDropDown={setOpenOrder}
-          setShowSubmit={setShowSubmit}
-        />
-
-        <Style
-          setShowPopUp={setShowPopUp}
-          showPopUp={showPopUp}
-          setShow={setShow}
-          setCodeString={setCodeString}
-          setCard={setCard}
-          display={display}
-          numberArray={numberArray}
-          setOpenDropDown={setOpen}
-          openStyle={openStyle}
-          setOpenStyle={setOpenStyle}
-          setShowSubmit={setShowSubmit}
-        />
+        
+        
       </div>
     </div>
   );
