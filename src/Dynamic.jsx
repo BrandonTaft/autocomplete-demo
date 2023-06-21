@@ -29,16 +29,12 @@ function Dynamic({
 <AutoComplete
     showAll={true}
     list={originalList ? response : numberArray}
-    getDisplayValue={(item) => {item.firstName}}
+    getDisplayValue={(list) => list.map((item) => item.name)}
     handleHighlight={(item) => {
-        if (typeof item === 'number') {
-            setCard(cards[item])
-        } else {
-            setUser(item)
-        }
+        setDisplay(item)
     }}
-    onSelect={(element,item) => {
-        console.log(element,item)
+    onSelect={(item) => {
+        console.log(item)
       }}
 />`
 

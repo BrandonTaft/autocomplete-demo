@@ -48,6 +48,9 @@ const [newList, setNewList] = useState();
     showAll={true}
     submit={submit}
     controlSubmit={true}
+    onSelect={(item) => {
+      console.log(item)
+    }}
     handleNewValue={(value,list) => {
       setNewList(prevState => [...prevState, Number(value)])
     }}
