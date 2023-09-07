@@ -1,23 +1,22 @@
 body {
-  font-size: calc(6px + 2vmin);
+  font-size: calc(5px + 2vmin);
   color: white;
   text-align: center;
   cursor: default;
+
 }
 
 .dark {
-  background-color: #020711;
-  /* background-color: #282c34; */
+  background-color: #2d2d2d;
   padding-top: 20px;
   padding-bottom: 75px;
 }
 
 .light {
-  background-color: #FFF;
+  background-color: #fff;
   padding-top: 20px;
-  padding-bottom: 75px;
   color: #000000;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 h1 {
@@ -25,7 +24,7 @@ h1 {
 }
 
 i {
-  color: #76d8f9;
+  color: #33A7FF;
   font-size: calc(10px + 1vmin);
 }
 
@@ -38,45 +37,45 @@ i {
   border-radius: 10px;
 }
 
+.dark .dropdown-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px #33A7FF;
+  border-radius: 10px;
+}
+
 .dropdown-container::-webkit-scrollbar-thumb {
   border-radius: 10px;
   outline: 1px solid white;
 }
 
 .dark .dropdown-container::-webkit-scrollbar-thumb {
-  background-color: #61dafb;
+  background-color: #33A7FF;
 }
 
 .light .dropdown-container::-webkit-scrollbar-thumb {
-  background-color: #6d05a4;
+  background-color: #121212;
 }
 
-.dark .dropdown-item.highlited-item {
-  background-color: #61dafb !important;
+.dark .app-title {
+  color: #33A7FF;
 }
 
-.light .dropdown-item.highlited-item {
-  background-color: #6d05a4 !important;
-  color: #FFF;
-}
-
-.dark .green {
-  color: #76d8f9;
-}
-
-.light .green {
-  color: #6d05a4;
+.light .app-title {
+  color: #9407df;
 }
 
 .dark .highlight {
   display: contents;
-  color: #76d8f9;
+  color: #33A7FF;
 }
 
 .light .highlight {
   display: contents;
-  color: #6d05a4;
+  color: #9407df;
   font-weight: 600;
+}
+
+.green {
+  color: #33A7FF;
 }
 
 .btn-box {
@@ -97,11 +96,11 @@ button {
 }
 
 .dark button {
-  color: #76d8f9;
+  color: #33A7FF;
 }
 
 .light button {
-  background-color: #6d05a4;
+  background-color: #121212;
   color: white;
   font-weight: 500;
 }
@@ -115,7 +114,12 @@ button {
 }
 
 .light .horizontal-bar {
-  border: #6d05a4 ridge 4px;
+  border: #121212 ridge 4px;
+}
+
+.title.horizontal-bar {
+  margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 .top.horizontal-bar {
@@ -124,39 +128,44 @@ button {
 }
 
 .dark .top.horizontal-bar {
-  border-color: #76d8f9;
+  border-color: #33A7FF;
 }
 
 .light .top.horizontal-bar {
-  border-color: #6d05a4;
+  border-color: #121212;
 }
 
 .header {
-  margin-bottom: 4em;
+  margin-bottom: 2em;
   font-family: serif;
 }
 
 .dark li::marker {
-  color: #76d8f9;
+  color: #33A7FF;
 }
 
 .light li::marker {
-  color: #6d05a4;
+  color: #121212;
 }
 
 /********** APP CONTENT **********/
+.animal {
+  font-size: 1.5em !important;
+  transform: translateY(-50%) translateX(-50%) !important;
+  overflow: auto !important;
+}
 
 .App-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 0 !important;
 }
 
 section {
   display: flex;
   flex-direction: column;
-  height: 500px;
-  margin-bottom: 4em;
+  margin-bottom: 300px;
   width: 90%;
 }
 
@@ -181,17 +190,11 @@ section {
 }
 
 .title {
-  font-size: calc(14px + 2vmin);
+  font-size: calc(16px + 2vmin);
   margin-bottom: .25em;
-  font-weight: 600;
-  font-family: fira sans;
+  font-weight: 700;
   letter-spacing: 1px;
-}
-
-.light .title {
-  color: #6d05a4;
-  font-weight: 600;
-  font-family: fira sans;
+  color: #9407df;
 }
 
 .description-container {
@@ -205,8 +208,12 @@ section {
   padding: 6px 0;
 }
 
+.autocomplete-wrapper {
+  position: relative;
+}
+
 .autocomplete-input {
-  border: ridge 1px #76d8f933;
+  border: ridge 1px #33A7FF33;
   border-radius: 20px;
   background-color: white;
   outline: none;
@@ -218,8 +225,9 @@ section {
 }
 
 .dropdown-container {
-  position: relative;
-  left: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
   overflow-y: auto;
   max-height: 220px;
   width: 235px;
@@ -243,56 +251,45 @@ section {
 
 pre {
   font-size: calc(4px + 1.5vmin) !important;
-  padding: 1em 3em !important;
+  padding: 1em 2em !important;
   border: ridge 4px;
   border-radius: 20px !important;
 }
 
-.dark pre {
-  background-color: #292c34 !important;
-}
-
-.light pre {
-  background-color: #292c34 !important;
+@media only screen and (max-width: 819px){
+  pre {
+    font-size: calc(6px + 1.5vmin) !important;
+  }
 }
 
 .close-btn {
   cursor: pointer;
   position: absolute;
-  top: 5%;
+  top: 8%;
   left: 80%;
   color: white;
-  font-size: .8em;
+  font-size: .5em;
   border: solid white 2px;
   border-radius: 22px;
   padding: 1px 8px 2px;
   font-weight: 500;
 }
 
+@media only screen and (max-width: 600px){
+  .close-btn {
+  left: 75%;
+  font-size: .65em;
+  }
+}
+
 .preview-section {
   display: none;
 }
 
-/********** FILTER **********/
-.filter-sort {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  width: 70px;
-}
-
-/********** DESCENDING **********/
-.descending {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 6px 0px;
-  min-width: 95px;
-}
-
 .card { 
+  font-size: 1em;
   box-shadow: black 3px 3px 6px;
+  overflow: auto;
 }
 
 @media only screen and (min-width: 820px) and (max-height: 800px){
@@ -362,15 +359,15 @@ pre {
     top: 50%;
     left: 50%;
     transform: translateY(-56%) translateX(-56%);
-    font-size: 6em;
+    font-size: 5em;
   }
 
   .top-left {
     position: absolute;
     display: flex;
     flex-direction: column;
-    right: 77%;
-    font-size: 2.75em;
+    right: 75%;
+    font-size: 2.25em;
     font-weight: 600;
   }
 
@@ -383,8 +380,8 @@ pre {
     display: flex;
     flex-direction: column;
     bottom: 0;
-    left: 77%;
-    font-size: 2.75em;
+    left: 75%;
+    font-size: 2.25em;
     font-weight: 600;
     transform: rotate(180deg);
   }
@@ -392,12 +389,14 @@ pre {
 }
 
 
+@media only screen and (min-width: 700px) {
+section {
+  margin-bottom: 350px;
+}
+}
+
 
 @media only screen and (min-width: 820px) {
-  body {
-    font-size: calc(2px + 2vmin);
-  }
-
   .switch {
     padding-right: 10px;
     padding-left: 10px;
@@ -417,22 +416,16 @@ pre {
 
   section {
     width: 50%;
-    height: 800px;
-    margin-bottom: 4em;
+    margin-bottom: 450px;
   }
 
-  .numbers {
-    height: 900px;
-   }
-
-  .style {
-   height: 900px;
+  .bottom {
+    margin-bottom: 275px;
   }
 
   button {
     width: fit-content;
     padding: 5px;
-
   }
 
   .autocomplete-input {
@@ -448,10 +441,6 @@ pre {
   }
 
   /*********** PREVIEW ***********/
-  .preview {
-    margin-bottom: 5em;
-    height: 850px;
-  }
 
   .preview-section {
     display: flex;
@@ -459,7 +448,7 @@ pre {
     position: fixed;
     top: 30%;
     right: 8%;
-    border: ridge 6px;
+    border: #33A7FF ridge 6px;
     border-radius: 20px;
     padding-bottom: 1em;
     height: 350px;
@@ -467,7 +456,7 @@ pre {
   }
 
   .light .preview-section {
-    border: #6d05a4 ridge 8px;
+    border: #121212 ridge 8px;
     font-weight: 600;
   }
 
@@ -509,45 +498,7 @@ pre {
   }
 }
 
-@media only screen and (min-width: 1020px) and (max-height: 800px) {
-  .middle-card {
-    font-size: 7em;
-  }
 
-  .top-left {
-    right: 75%;
-    font-size: 3.5em;
-  }
-
-  .bottom-right {
-    left: 75%;
-    font-size: 3.5em;
-  }
-
-  .suit-top {
-    margin-top: -25px;
-  }
-}
-
-@media only screen and (min-width: 1020px) and (min-height: 801px) {
-.middle-card {
-  font-size: 5.5em;
-}
-
-.top-left {
-  right: 75%;
-  font-size: 2.75em;
-}
-
-.bottom-right {
-  left: 75%;
-  font-size: 2.75em;
-}
-
-.suit-top {
-  margin-top: -30px;
-}
-}
 
 @media only screen and (min-width: 1020px) {
   
@@ -567,6 +518,10 @@ pre {
     width: 25%;
   }
 
+  .dark .preview-section {
+    border: #33A7FF ridge 6px;
+  }
+
   .order {
     margin-bottom: 6em;
   }
@@ -581,8 +536,39 @@ pre {
     width: 280px;
   }
 
+  .top-left {
+    font-size: 2.15em;
+  }
+
+  .bottom-right {
+    font-size: 2.15em;
+  }
+
+  .middle-card {
+    font-size: 4em;
+  }
+
 }
 
+@media only screen and (min-width: 1020px) and (max-height: 800px) {
+  .middle-card {
+    font-size: 6;
+  }
+
+  .top-left {
+    right: 75%;
+    font-size: 2.7em;
+  }
+
+  .bottom-right {
+    left: 75%;
+    font-size: 2.7em;
+  }
+
+  .suit-top {
+    margin-top: -25px;
+  }
+}
 
 @media only screen and (min-width: 1420px) {
 
@@ -591,20 +577,19 @@ pre {
   }
 
   section {
-    height: 640px;
     width: 55%;
   }
 
   .top-left {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 
   .bottom-right {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 
   .middle-card {
-    font-size: 6em;
+    font-size: 4.5em;
   }
 
   .descending {
@@ -629,10 +614,6 @@ pre {
 }
 
 @media only screen and (min-width: 1420px) and (max-height: 800px) {
-  .middle-card {
-    font-size: 6em;
-  }
-  
   .top-left {
     font-size: 3.75em;
   }

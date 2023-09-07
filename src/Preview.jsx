@@ -10,10 +10,12 @@ function Preview({
     setUser,
     openDropDown,
     setOpenDropDown,
-    setOpenCardDropDown,
-    setOpenAnotherDropDown,
-    setOpenSubmitDropDown,
-    setShowSubmit
+    setOpenCard,
+    setOpenDynamic,
+    setOpenSubmit,
+    setShowSubmit,
+    setAnimal,
+    setShowAnimal
 }) {
 
     useEffect(() => {
@@ -21,11 +23,12 @@ function Preview({
     }, [openDropDown, setShowSubmit]);
 
     const toggleDropDown = (() => {
+        setOpenCard(false)
+        setOpenDynamic(false)
+        setOpenSubmit(false)
         setOpenDropDown(!openDropDown)
-        setOpenCardDropDown(false)
-        setOpenAnotherDropDown(false)
-        setOpenSubmitDropDown(false)
     })
+
 
     const handleCode = (() => {
         setShowPopUp(!showPopUp)
@@ -34,26 +37,29 @@ function Preview({
 
     const codeString = `
 
- const [openDropDown, setOpenDropDown] = useState(false);
+
+ const [isOpen, setIsOpen] = useState(false);
+ 
  <button className='ignore' onClick={() => {
-     setOpenDropDown(!openDropDown)
+     setIsOpen(!isOpen)
  }}/>
 
  <AutoComplete
-     list={response}
-     getDisplayValue={(list) => list.map((item) => item.name)}
+     list={users}
      showAll={true}
      disableOutsideClick={true}
-     open={openDropDown}
-     onDropDownChange={(isOpen) => {
-        setOpenDropDown(isOpen)
+     open={isOpen}
+     onDropDownChange={(open) => {
+        setOpenDropDown(open)
      }}
+     onSelect={(item) => console.log(item)}
  />
+ 
      `;
 
     return (
         <>
-            <section className='preview'>
+            <section>
                 <span className='title'>Toggle Open / Close</span>
                 <span className='top horizontal-bar'></span>
                 <ul className='description-container'>
@@ -72,15 +78,15 @@ function Preview({
                     showAll={true}
                     disableOutsideClick={true}
                     open={openDropDown}
-                    onDropDownChange={(update) => {
-                        setOpenDropDown(update)
+                    onDropDownChange={(open) => {
+                        setOpenDropDown(open)
+                        setAnimal()
+                        setShowAnimal(false)
                     }}
                     handleHighlight={(item) => {
                         setUser(item)
                     }}
-                    onSelect={(element, item) => {
-                        console.log(element, item)
-                    }}
+                    onSelect={(item) => console.log(item)}
                 />
             </section>
         </>

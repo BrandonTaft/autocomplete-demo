@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
-import dracula from 'react-syntax-highlighter/dist/esm/styles/prism/dracula';
+import { a11yDark, atomDark, coldarkCold, coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Preview from './Preview';
+import Simple from './Simple';
 import Numbers from './Numbers';
 import Dynamic from './Dynamic';
 import Submit from './Submit';
+import Errors from './Errors';
 import yellowLogo from './logo.png';
 import logo from './logo.svg';
 import purpleLogo from './logo-purple.png';
@@ -19,17 +21,20 @@ function App() {
   const [showPopUp, setShowPopUp] = useState(false);
   const [codeString, setCodeString] = useState("");
   const [open, setOpen] = useState(false);
+  const [openSimple, setOpenSimple] = useState(false);
   const [openDynamic, setOpenDynamic] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   const [openSubmit, setOpenSubmit] = useState(false);
+  const [openErrors, setOpenErrors] = useState(false);
   const [show, setShow] = useState(true);
+  const [showAnimal, setShowAnimal] = useState(false);
   const [showSubmit, setShowSubmit] = useState(false);
   const [user, setUser] = useState();
   const [number, setNumber] = useState();
+  const [animal, setAnimal] = useState();
   const [card, setCard] = useState([]);
-  const [display, setDisplay] = useState([]);
-  const [numberArray, setNumberArray] = useState([]);
-  const [theme, setTheme] = useState("dark")
+  // eslint-disable-next-line
+  const [theme, setTheme] = useState("light")
 
   useEffect(() => {
     const requestAPI = async () => {
@@ -46,51 +51,36 @@ function App() {
       }
     };
     requestAPI()
-
-    setNumberArray([...Array(52).keys()])
-    const cards = new Array(52);
-    for (let i = 0; i < cards.length; i++) {
-      cards[i] = i;
-    }
-
-    const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    const suits = ['♠︎', '♥︎', '♣︎', '♦︎'];
-
-    const getProperties = (i) => {
-      const color = i / 13 | 0;
-      const suit = suits[i / 13 | 0];
-      const value = values[i % 13];
-      return { suit, value, color };
-    };
-    setDisplay(cards.map(getProperties))
   }, [])
 
-  const toggleTheme = () => {
-    if(theme === "dark") {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
-  }
+
+  // const toggleTheme = () => {
+  //   if(theme === "dark") {
+  //     setTheme('light')
+  //   } else if (theme === 'light') {
+  //     setTheme('dark')
+  //   }
+  // }
 
   return (
     <div className={theme}>
       {showPopUp ?
         <div className='popup'>
           <div className="close-btn" onClick={() => setShowPopUp(!showPopUp)}>CLOSE</div>
-          <SyntaxHighlighter language="jsx" style={dracula} >
+          <SyntaxHighlighter language="jsx" style={coldarkDark} >
             {codeString}
           </SyntaxHighlighter>
         </div>
         : null
       }
       <div className='header'>
-        <h1 className='green'>AUTOCOMPLETE DEMO</h1>
-        <button className='ignore btn switch' onClick={toggleTheme}>{theme.toUpperCase()}</button>
+        <h1 className='app-title'>AUTOCOMPLETE DEMO</h1>
+        {/* <div class="title horizontal-bar"></div> */}
+        {/* <button className='ignore btn switch' onClick={toggleTheme}>{theme.toUpperCase()}</button> */}
       </div>
       <div className='App-content'>
         <section className='preview-section'>
-          {!open && !openDynamic && !openCard && !showSubmit ?
+          {!open && !openDynamic && !openCard && !showSubmit && !showAnimal ?
             <img 
               src={ theme === 'dark' ? yellowLogo : theme === 'lightest' ? purpleLogo : logo }
               className="App-logo"
@@ -130,11 +120,12 @@ function App() {
               </div>
             </>
             : null}
-          {number && openCard && show ?
+          {((number && openCard) || (animal && showAnimal)) && show ?
             <>
               <div className='preview-display'>
                 <div className='card' style={{ color: 'black' }}>
-                  <span className='middle-card'>{number}</span>
+                  { number && <span className='middle-card'>{number}</span>}
+                  { animal && <span className='middle-card animal'>{animal}</span>}
                 </div>
               </div>
             </>
@@ -142,22 +133,34 @@ function App() {
 
 
         </section>
+        <Simple
+          setShowPopUp={setShowPopUp}
+          showPopUp={showPopUp}
+          setShow={setShow}
+          setAnimal={setAnimal}
+          setCodeString={setCodeString}
+          openSimple={openSimple}
+          setOpenSimple={setOpenSimple}
+          setOpenDropDown={setOpen}
+          setShowSubmit={setShowSubmit}
+          setShowAnimal={setShowAnimal}
+          setNumber={setNumber}
+        />
         <Dynamic
           response={response}
-          setAnotherUser={setUser}
+          setUser={setUser}
           setShow={setShow}
           setCard={setCard}
-          display={display}
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
           setOpenDropDown={setOpen}
           openAnotherDropDown={openDynamic}
           setOpenAnotherDropDown={setOpenDynamic}
-          numberArray={numberArray}
           setShowSubmit={setShowSubmit}
+          setAnimal={setAnimal}
+          setShowAnimal={setShowAnimal}
         />
-        
         <Preview
           response={response}
           setUser={setUser}
@@ -166,14 +169,16 @@ function App() {
           setCodeString={setCodeString}
           openDropDown={open}
           setOpenDropDown={setOpen}
-          setOpenAnotherDropDown={setOpenDynamic}
-          setOpenCardDropDown={setOpenCard}
-          setOpenSubmitDropDown={setOpenSubmit}
           setShowSubmit={setShowSubmit}
+          setOpenCard={setOpenCard}
+          setOpenSubmit={setOpenSubmit}
+          setOpenDynamic={setOpenDynamic}
+          setAnimal={setAnimal}
+          setShowAnimal={setShowAnimal}
         />
         <Submit
           response={response}
-          setAnotherUser={setUser}
+          setUser={setUser}
           showPopUp={showPopUp}
           setShowPopUp={setShowPopUp}
           setCodeString={setCodeString}
@@ -181,6 +186,8 @@ function App() {
           openSubmitDropDown={openSubmit}
           setOpenSubmitDropDown={setOpenSubmit}
           setShowSubmit={setShowSubmit}
+          setAnimal={setAnimal}
+          setShowAnimal={setShowAnimal}
         />
         <Numbers
           setShowPopUp={setShowPopUp}
@@ -192,9 +199,22 @@ function App() {
           openCardDropDown={openCard}
           setOpenCardDropDown={setOpenCard}
           setShowSubmit={setShowSubmit}
+          setAnimal={setAnimal}
+          setShowAnimal={setShowAnimal}
         />
-        
-        
+        <Errors
+          setShowPopUp={setShowPopUp}
+          showPopUp={showPopUp}
+          setShow={setShow}
+          setCodeString={setCodeString}
+          openErrors={openErrors}
+          setOpenErrors={setOpenErrors}
+          setOpenDropDown={setOpen}
+          setNumber={setNumber}
+          setShowSubmit={setShowSubmit}
+          setAnimal={setAnimal}
+          setShowAnimal={setShowAnimal}
+        />
       </div>
     </div>
   );

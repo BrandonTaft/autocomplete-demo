@@ -11,10 +11,12 @@ function Numbers({
   setOpenDropDown,
   openCardDropDown,
   setOpenCardDropDown,
-  setShowSubmit
+  setShowSubmit,
+  setAnimal,
+  setShowAnimal
 }) {
 
-  const [newList, setNewList] = useState();
+  const [newList, setNewList] = useState([2, 4, 6, 8, 10, 15, 20, 30, 40, 50]);
   const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
@@ -28,43 +30,44 @@ function Numbers({
 
   }, [openCardDropDown, setOpenDropDown, setShow, setShowSubmit])
 
-  useEffect(() => {
-    setNewList([0,2, 4, 6, 8, 10, 15, 20, 30, 40, 50])
-  }, [])
-
   const handleCode = (() => {
     setShowPopUp(!showPopUp)
     setCodeString(codeString)
   })
 
-
-
   const codeString = `
 
-const [newList, setNewList] = useState();
+
+const [arr, setArr] = useState(array);
+const [submit, setSubmit] = useState(false);
+
+<button onClick={() => setSubmit(true)}>
+  Submit
+</button>
 
 <AutoComplete
-    list={newList}
+    list={arr}
     showAll={true}
     submit={submit}
     controlSubmit={true}
     onSelect={(item) => {
       console.log(item)
+      setSubmit(false)
     }}
-    handleNewValue={(value,list) => {
-      setNewList(prevState => [...prevState, Number(value)])
+    handleNewValue={(value) => {
+      setArr(prev => [...prev, Number(value)])
     }}
 />
 
 `
 
   return (
-    <section className='numbers'>
+    <section>
       <span className='title'>Add New Values</span>
       <span className='top horizontal-bar'></span>
       <ul className='description-container'>
         <li className='description'>Any time there are no matching values, the <span className='highlight'>handleNewValue</span> function will run if the prop is passed in. </li>
-        <li className='description'>If the <span className='highlight'>handleNewValue</span> function is not passed in, the <span className='highlight'>onSelect</span> function will still run.</li>
+        <li className='description'>If the <span className='highlight'>handleNewValue</span> function is not passed in, the <span className='highlight'>onSelect</span> function will run with the input value passed in.</li>
       </ul>
       <div className='btn-box'>
         <button className='ignore btn' onClick={() => { setSubmit(true) }}>Submit</button>
@@ -76,8 +79,10 @@ const [newList, setNewList] = useState();
         open={openCardDropDown}
         onDropDownChange={(openMe) => {
           setOpenCardDropDown(openMe)
+          setAnimal()
+          setShowAnimal(false)
         }}
-        
+
         showAll={true}
         handleHighlight={(highlightedItem) => {
           setNumber(highlightedItem)
@@ -85,11 +90,12 @@ const [newList, setNewList] = useState();
         submit={submit}
         controlSubmit={true}
         handleNewValue={(value) => {
-          setNewList(prevState => [...prevState, Number(value)])
+          setNewList(prev => [...prev, Number(value)])
           setSubmit(false)
         }}
         onSelect={(item) => {
           console.log(item)
+          setSubmit(false)
         }}
       />
     </section>
